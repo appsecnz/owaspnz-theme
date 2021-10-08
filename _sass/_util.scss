@@ -1,0 +1,152 @@
+/*
+SCSS and styling utilities
+variables, mixins, font specs
+*/
+
+
+// variables
+$fa-font-path: "/assets/fontawesome";
+$font-path:    "/assets/font";
+$site-font: "roboto";
+$site-font-bold: "roboto_bold";
+$site-font-italic: "roboto_italic";
+$site-font-bold-italic: "roboto_bolditalic";
+
+$bg-blue:  #233e81;
+$bg-grey:  #f3f4f6;
+$cta-blue: #1d7bd7;
+
+$success: #369505;
+$warning: #892727;
+$alert:     #ffd21c;
+$dark:    #444444;
+$mid-grey: #888;
+$grey:    #e6e6e6;
+
+$font-size: 18px;
+$grid-val:  30px;
+
+$content-bp: $grid-val*28; // 840px, content becomes 1-col
+$header-bp:  $grid-val*34; // 1020px, header changes
+
+// mixins
+@mixin hide-el { // hide element (accessible)
+  position: absolute !important;
+  left: -99999px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+.hide-el { // for easy class reference
+  @include hide-el;
+}
+
+@mixin remove-el { // hide element (inaccessible)
+  //display: none !important;
+  position: absolute !important;
+  left: -99999px !important;
+  width: 0 !important;
+  height: 0 !important;
+  visibility: hidden !important;
+  opacity: 0.0 !important;
+}
+
+.remove-el {
+  @include remove-el;
+}
+
+@mixin nav-link {
+  margin: 0 10px;
+  text-decoration: none;
+  color: lighten(black, 40%);
+  &:hover {
+    color: $bg-blue;
+  }
+  &:active {
+    color: black;
+  }
+}
+
+@mixin nav-menu {
+  & > ul {
+    margin: 0;
+    & > li {
+      display: inline-block;
+    }
+    & a {
+      @include nav-link;
+      &.current {
+        text-decoration: underline;
+        color: $bg-blue;
+      }
+    }
+    & a:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+@mixin no-bullet-list {
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+}
+
+// font imports
+@font-face {
+  font-family: 'sharetech';
+  src: url('#{$font-path}/sharetech-regular.woff2') format('woff2'),
+        url('#{$font-path}/sharetech-regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: $site-font-bold;
+  src: url('#{$font-path}/Roboto-Bold.ttf') format('ttf'),
+        url('#{$font-path}/Roboto-Bold.ttf') format('ttf');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: $site-font-bold-italic;
+  src: url('#{$font-path}/Roboto-BoldItalic.ttf') format('ttf'),
+        url('#{$font-path}/Roboto-BoldItalic.ttf') format('ttf');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: $site-font-italic;
+  src: url('#{$font-path}/RobotoItalic.ttf') format('ttf'),
+        url('#{$font-path}/RobotoItalic.ttf') format('ttf');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: $site-font;
+  src: url('#{$font-path}/Roboto-Regular.ttf') format('ttf'),
+        url('#{$font-path}/Roboto-Regular.ttf') format('ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'ubuntu_medium';
+  src: url('#{$font-path}/ubuntu-medium.woff2') format('woff2'),
+        url('#{$font-path}/ubuntu-medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'ubuntu';
+    src: url('#{$font-path}/ubuntu-regular.woff2') format('woff2'),
+            url('#{$font-path}/ubuntu-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}

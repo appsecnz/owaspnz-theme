@@ -1,0 +1,25 @@
+<div class="left-sidebar" role="complementary">
+{% assign dev_file = site.static_files | where: 'name', 'devsite.txt' %}
+{% if dev_file.size > 0 %}
+{% assign site_base_url = '/' %}
+{% else %}
+{% assign site_base_url = '{{site.github.url}}' %}
+{% endif %}
+{% assign document = site.data.document | where: 'title', page.document | first %}
+<h1>{{ document.title }}</h1>
+<ul class='doc-chapter-ul'>  
+{% for chapter in document.chapters %}
+
+<li class='doc-chapter'>{% if chapter.url %}<a href='{{ chapter.url }}'>{% endif %}<h2>{{ chapter.title }}</h2>{% if chapter.url %}</a>{% endif %}</li>
+<ul class='doc-page-ul'>
+  {% for pg in chapter.pages %}
+  {% assign class = 'doc-page' %}
+  {% if pg.title contains page.title %}
+    {% assign class = 'doc-page active-section' %}
+  {% endif %}
+  <li class='{{class}}'>{% if pg.url %}<a href='{{ site_base_url}}{{ chapter.url}}{{pg.url }}'>{% endif %}<h3>{{ pg.title }}</h3>{% if pg.url %}</a>{% endif %}</li>
+  {% endfor %}
+</ul>
+{% endfor %} 
+</ul>
+</div>

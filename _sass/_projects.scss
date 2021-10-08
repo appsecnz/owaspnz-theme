@@ -1,0 +1,45 @@
+div.projects-list{ 
+    a.inactive {
+        text-decoration: underline;
+        color: $cta-blue;
+        cursor: pointer;
+    }
+    a.active {
+        text-decoration: none;
+        color: #000;
+        cursor: pointer;
+    }
+}
+
+.milestones .on-time {
+    color: black;
+    font-weight: normal;
+}
+
+.milestones .overdue {
+    color: red;
+    font-weight: bold;
+}
+
+.milestones .future {
+    color: darkgray;
+    font-weight: normal;
+}
+
+.milestones {
+    display: block;
+}
+
+.milestones nav ul {
+    display: flex;
+    justify-content: space-between;
+}
+.milestones nav ul li {
+    flex-grow: 1;
+}
+
+@media screen and (max-width: 840px) { // 840px
+    .milestones nav ul {
+        flex-direction: column;
+    }
+}

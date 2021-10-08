@@ -1,0 +1,328 @@
+/*
+navigation related styling
+header, footer, mobile navigation menu
+*/
+
+// desktop nav
+
+header {
+  margin-bottom: 8px;
+  background-color: $bg-grey;
+  box-shadow: 0 2px 3px #d8d8d8;
+}
+
+.header-wrapper {
+  height: 80px;
+}
+
+.event-header-wrapper {
+  height: 80px;
+}
+
+.desktop-logo {
+  display: inline-block;
+  img {
+    width: 100%;
+    max-width: 150px;
+  }
+}
+
+.interactive-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 180px;
+  border: 2px solid #dddddd;
+  padding: 6px;
+  border-radius: 0;
+  padding-right: 25px;
+  &:focus {
+    border-color: $cta-blue;
+  }
+  &:placeholder {
+    color: $bg-grey;
+  }
+}
+
+#search-button {
+  border:none;
+  background:transparent;
+  color: $cta-blue;
+  font-size:.7em;
+  padding-right:16px;
+  padding-left:0px;
+  margin-left: -25px;
+  margin-top: 12px;
+  &:hover {
+    color: lighten($cta-blue, 10%);
+  }
+}
+
+.site-search {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  min-width: 210px;
+  & > span {
+    margin-right: 10px;
+    cursor: pointer;
+    color: $cta-blue;
+    &:hover {
+      color: lighten($cta-blue, 10%);
+    }
+  }
+}
+
+.top-nav,
+.bot-nav {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include nav-menu;
+}
+
+.top-nav {
+  .nav-button {
+    margin-left: 15px;
+  }
+  .nav-button > * + * {
+    margin-left: 10px;
+  }
+  
+}
+
+.dropdown-menu {
+  position: absolute;
+  min-width: 200px;
+  padding: 0;
+  font-size: $font-size*0.9;
+  z-index: 99;
+
+  li {
+    display: block;
+    background-color: $bg-blue;
+    color: white;
+
+    &:first-child {
+      margin-top: 10px;
+    }
+    &:hover {
+      background-color: lighten($bg-blue, 10%);
+    }
+    &:active {
+      background-color: darken($bg-blue, 5%);
+    }
+    &.separator {
+      border-top: 3px solid lighten($bg-blue, 15%);
+    }
+    a, a:active, a:focus, a:hover, a:visited {
+      color:white;
+      text-decoration: none;
+    }
+    a {
+      display: block;    
+      padding: 5px 20px;
+    }
+  }
+  // pseudo class for triangle shape tip
+  &:after {
+    position: absolute;
+    left: 30px;
+    margin-left: -20px;
+    top: 0px;
+    width: 0;
+    height: 0;
+    content:'';
+    z-index: -1;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-bottom: 20px solid $bg-blue;
+  }
+}
+
+.top-nav ul {
+  font-size: 15px;
+}
+
+/* Hide Dropdowns by Default */
+
+.top-nav ul ul {
+  display: none;
+}
+	
+/* Display Dropdowns on Hover */
+.top-nav ul li:hover > ul {
+	display: block;
+}
+
+.bot-nav {
+  li {
+    margin-bottom: 10px;
+  }
+  a:first-child {
+    margin-left: 0;
+  }
+}
+
+.footer-wrapper {
+  .disclaimer {
+    margin-top: 15px;
+    font-size: 14px;
+  }
+}
+
+
+@media screen and (min-width: $header-bp) { // 1020px
+  .alt-nav {
+    @include remove-el;
+  }
+}
+
+// mobile nav 
+.alt-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu-toggler {
+  font-size: 30px;
+  color: lighten(black, 30%);
+}
+
+// mobile menu drawer, displays when toggled on
+.mobile-menu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  z-index: 99;
+  overflow: scroll;
+  background-color: $bg-blue;
+  box-shadow: 2px 0 10px #000000;
+  li {
+    display: block;
+    font-size: 14px;
+    &.separator {
+      border-top: 3px solid lighten($bg-blue, 15%);
+    }
+  }
+  input[type='text'] {
+    width: 100%;
+  }
+  a {
+    padding: 12px 15px;
+    display: block;
+    color: white;
+    text-decoration: none;
+  }
+  .nav-button {
+    margin-top: 10px;
+    & > a {
+      margin-right: 10px;
+    }
+  }
+}
+
+// TBD, likely not to be used
+// #overlay {
+//   position: fixed;
+//   display: block;
+//   width: 100%;
+//   height: 100%;
+//   top: 0;
+//   left: 0;
+//   right: 0;
+//   bottom: 0;
+//   background-color: $bg-grey;
+//   opacity: 0.8;
+//   z-index: 2;
+// }
+
+.alt-logo {
+  display: block;
+  margin: 15px auto;
+  max-width: 150px;
+  img {
+    width: 100%;
+  }
+}
+
+/* mobile menu with accordion buttons */
+.accordion {
+  background-color: $bg-blue;
+  color: white;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .accordion:hover {
+  background-color: lighten($bg-blue, 5%);
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: $bg-blue;
+  display: none;
+  overflow: hidden;
+}
+
+@media screen and (max-width: $header-bp - 1) { // 1019px
+  // replace desktop nav with mobile nav
+  .top-nav {
+    @include remove-el;
+  }
+  .header-wrapper {
+    max-height: 75px; 
+  }
+}
+
+@media screen and (min-width: $content-bp) { // 840px
+  .bot-nav {
+    // hide first 5 footer links on desktop 
+    ul > li:nth-child(-n+5) {
+      @include remove-el;
+    }
+  }
+}
+
+@media screen and (max-width: $content-bp - 1) { // 839px
+  // restyling for ease of use on mobile
+  .bot-nav {
+    ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 5 auto;
+    }
+  }
+
+  .social {
+    float: none;
+  }
+}
+
+@media screen and (max-width: $content-bp) {
+  .main-wrapper,
+  .header-wrapper,
+  .member-wrapper,
+  .alt-member-wrapper,
+  .footer-wrapper {
+    & > * {
+      margin: 5 0;
+    }
+  }
+}

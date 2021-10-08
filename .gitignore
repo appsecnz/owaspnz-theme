@@ -1,0 +1,21 @@
+/Gemfile.lock
+/favicon.ico
+_site/
+devsite.txt
+
+# MacOS
+.DS_Store
+
+# Eclipse
+# -------
+.project
+.settings
+
+# VS Code
+# -------
+.vscode
+.history
+
+# IDEA
+# ----
+.idea

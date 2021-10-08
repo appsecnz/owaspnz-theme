@@ -1,0 +1,13 @@
+<div class="sidebar" role="complementary">
+
+  {% include appsecnz-about.html %}
+  <div>
+  <h3>Recent News & Opinions</h3>
+  <ul>
+  {% for post in site.posts | offset: 1 | limit: 20 %}
+    <li><a href="{{ post.url }}">{{ post.title }}</a></li>	
+  {% endfor %}	
+  </ul>	  
+  </div>
+  {% include appsecnz-events.html %}
+</div>

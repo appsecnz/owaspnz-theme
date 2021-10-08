@@ -1,0 +1,150 @@
+<header role="banner">
+  {% include banner.html %}
+  <div class="header-wrapper" aria-label="main navigation">
+    <nav class="alt-nav">
+      <a href="#" class="menu-toggler" aria-hidden="true">
+        <i class="fa fa-bars"></i>
+      </a>
+      <a href="https://owasp.org/" class="alt-logo" aria-label="go to homepage">
+          <img src="https://owasp.org/assets/images/logo.png" alt="OWASP logo">
+      </a>
+      <div id="overlay" class="remove-el">
+
+      </div>
+      <!-- jekyll menu stuff -->
+    </nav>
+    
+    <nav class="top-nav" role="navigation" aria-label="primary navigation">
+      <a href="https://owasp.org/" class="desktop-logo" aria-label="go to homepage">
+        <img src="https://owasp.org/assets/images/logo.png" alt="">
+      </a>
+      <!-- jekyll menu stuff -->
+      
+      <div class="interactive-wrapper">
+        <form role="search" method="get" action="https://owasp.org/search">   
+          <div class='search-div'>
+            <input id="searchString" name="searchString" class="search-bar" type="search" placeholder="Search OWASP.org" required="true">
+            <button id="search-button" type="submit" class="fa fa-search">
+                <!--<span id="search-icon" tabindex="0"><i class="fa fa-search"></i></span>-->
+            </button>
+          </div>  
+        </form>
+        <div class="nav-button" aria-label="donate to or join OWASP">
+        {% if site.github.repository_name contains 'project-' or site.github.repository_name contains 'chapter-' or site.github.repository_name contains 'committee-' %}
+        {% assign ptitle = page.title | url_encode %}
+        {% assign pagetitle = '&title=' | append: ptitle  %}
+        {% else %}
+        {% assign pagetitle = '' %}
+        {% endif %}
+          <a href="https://owasp.org/store" class="cta-button white inset"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Store</a>
+          <a href="https://owasp.org/donate?reponame={{ site.github.repository_name }}{{ pagetitle }}" class="cta-button green">Donate</a>
+          <a href="https://owasp.org/membership" class="cta-button">Join</a>
+        </div>
+      </div>
+    </nav>
+    {% include cookie-disclaimer.html %}
+  </div>
+  <div class="mobile" style="width:100%;margin:auto;justify-content: space-between;">
+    <div style="float:left;margin:auto;padding-right:10%;"><a href="https://owasp.org/store" class="cta-button white inset"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Store</a></div>
+    <div style="float:left;margin:auto;padding-right:10%;"><a href="https://owasp.org/donate?reponame={{ site.github.repository_name }}{{ pagetitle }}" class="cta-button green">Donate</a></div>
+    <div style="float:left;margin:auto;"><a href="https://owasp.org/membership" class="cta-button">Join</a></div>
+  </div>
+{% assign dev_file = site.static_files | where: "name", "devsite.txt" %}
+{% if dev_file.size > 0 %}
+{% assign site_base_url = '/' %}
+{% else %}
+{% assign site_base_url = 'https://owasp.org/www--site-theme/' %}
+{% endif %}
+
+<script type="text/javascript">
+  $(function(){
+      
+      url = $(location).attr('href');
+      if(url.includes('www2'))
+      {
+        url = url.replace(/www2./, '');
+        $(location).attr('href',url);
+        return;
+      }
+    // this works to get data from a json file NOT in data
+      $.getJSON("{{site_base_url}}assets/sitedata/menus.json", function(data) {
+         var listr = "<ul aria-label='header menu'>";
+         
+         var mlistr = "<ul class='mobile-menu hide-el' role='navigation' aria-label='mobile primary navigation'>";
+
+          mlistr += "<li><a href='#' class='menu-toggler' aria-hidden='true'><i class='fa fa-times'></i></a></li>";
+          mlistr += "<li>";
+          mlistr += "<form role='search' method='get' action='https://owasp.org/search'>";   
+          mlistr += "<div class='search-div'>";
+          mlistr += "<input id='searchString' aria-label='search input' name='searchString' class='search-bar' type='search' placeholder='Search OWASP.org' required='true'>";
+          mlistr += "<button id='search-button' aria-label='search button' type='submit' class='fa fa-search' style='padding-left: 8px;'></button></div></form>";
+          mlistr += "</li>";
+          $.each(data.menus, function (ndx, menu){
+              listr += "<li><a href='" + menu.url + "'>" + menu.title + "</a>";
+
+              if(!menu.items)
+              {
+                  mlistr += "<li><a href='" + menu.url + "'>" + menu.title + "</a>";
+              }
+              
+              if(menu.items){
+                  listr += "<ul class='dropdown-menu'>";
+                  mlistr += "<button class='accordion'>" + menu.title + "</button>";
+                  mlistr += "<div class='panel'>";
+                  mlistr += "<ul>";
+                $.each(menu.items, function(ndx, item){
+                
+                  if(item.separator)
+                  {
+                      listr += "<li class='separator'>";
+                      mlistr += "<li class='separator'>";
+                  }
+                  else
+                  {
+                      listr += "<li>";
+                      mlistr += "<li>";
+                  }
+                  listr += "<a href='" + item.url + "'";
+                  mlistr += "<a href='" + item.url + "'";
+                  if(item.opentab)
+                  {
+                    listr += " target='_blank' rel='noopener noreferrer'";
+                    mlistr += " target='_blank' rel='noopener noreferrer'";
+                  }
+
+                  listr += ">" + item.title + "</a></li>";
+                  mlistr += ">" + item.title + "</a></li>";
+                });
+                listr += "</ul>";
+                mlistr += "</ul>";
+                mlistr += "</div>"
+              }
+              
+              listr += "</li>";
+              mlistr += "</li>";
+          });
+          listr += "</ul>";
+          mlistr += "<li><a href='https://owasp.org/donate'>MAKE A DONATION</a></li>";
+          mlistr += "<li><a href='https://owasp.org/membership'>BECOME A MEMBER</a></li>";
+          mlistr += "<li><a href='https://owasp.org/sitemap'>SITEMAP</a></li>";
+          mlistr += "</ul>";
+          
+          $('.desktop-logo').after(listr);
+          $('#overlay').after(mlistr);
+
+          $(".accordion").click(function () {
+              $(this).toggleClass("active");
+              if($(this).next('.panel').css('display') == 'block'){
+                $(this).next('.panel').css('display', 'none');
+              }
+              else {
+                $(this).next('.panel').css('display', 'block');
+              }
+            });
+            $(".menu-toggler").click(function() {
+              $(".mobile-menu").toggleClass('hide-el');
+            });
+      });
+    });
+  </script>
+</header>
