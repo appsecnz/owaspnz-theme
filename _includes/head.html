@@ -12,21 +12,14 @@
 {% assign title = title | append: page.title %}
 {% endif %}
 {% if title %}
-  {% assign title = title | append: ' | OWASP Foundation' %}
+  {% assign title = title | append: ' | AppSec NZ' %}
 {% else %}
-  {% assign title = page.title | append: ' | OWASP Foundation' %}
-{% endif %}
-{% if page.url contains '-project-' %}
-  {% assign title = title | append: ' Projects' %}
-{% elsif page.url contains '-chapter-' %}
-  {% assign title = title | append: ' Chapters' %}
-{% elsif page.url contains '-committee-' %}
-  {% assign title = title | append: ' Committees' %}
+  {% assign title = page.title | append: ' | AppSec NZ' %}
 {% endif %}
 
 <meta name="description" content="{{ page.pitch | default: default_desc }}">
 <meta property="og:description" content="{{ page.pitch | default: default_desc }}">
-<meta propery="og:title" content="{{ title }}">
+<meta property="og:title" content="{{ title }}">
 <meta property="og:url" content="{{site.github.url | replace: 'www2.', '' | replace: 'http://', 'https://' | replace: 'owasp.github.io', 'owasp.org'}}{{page.url}}">
 <meta property="og:locale" content="en_NZ">
 
