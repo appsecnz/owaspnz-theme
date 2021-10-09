@@ -1,5 +1,10 @@
 <section class="member">
-{% assign site_base_url = 'https://appsec.org.nz' %}
+{% assign dev_file = site.static_files | where: "name", "devsite.txt" %}
+{% if dev_file.size > 0 %}
+{% assign site_base_url = '/' %}
+{% else %}
+{% assign site_base_url = 'https://appsec.org.nz/' %}
+{% endif %}
   <script type="text/javascript">
     var sponsors = [];
     var diamond_indices = []; // 5x as likely to be shown
