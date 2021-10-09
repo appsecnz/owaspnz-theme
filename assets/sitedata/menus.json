@@ -1,11 +1,84 @@
 {
-	"menus": [{
+	"menus": [
+		{
+			"title": "Home",
+			"url": "/"
+		},
+		{
 			"title": "2022 OWASP NZ Day",
-			"url": "/conference"
+			"url": "/conference",
+			"items": [
+			{
+				"title": "Call for Sponsors",
+				"url": "/conference/sponsorship.html"
+			},
+			{
+				"title": "Call for Trainers and Presenters",
+				"url": "/conference/cfp_cft.html"
+			},
+			{
+				"title": "Diversity Fund",
+				"url": "/conference/diversity_fund.html"
+			},
+			{
+				"title": "Code of Conduct",
+				"url": "/conference/conduct.html"
+			},
+			{
+				"title": "Volunteers",
+				"url": "/conference/volunteers.html"
+			},
+			{
+				"title": "International Attendees",
+				"url": "/conference/international.html"
+			}
+			]
 		},
 		{
 			"title": "2021 AppSec NZ Conference",
-			"url": "/conference-2021"
+			"url": "/conference-2021",
+			"items": [
+			{
+				"title": "Conference Schedule",
+				"url": "/conference-2021/schedule.html"
+			},
+			{
+				"title": "Speakers and Abstracts",
+				"url": "/conference-2021/speakers.html"
+			},
+			{
+				"title": "Demos/Breakouts",
+				"url": "/conference-2021/breakouts.html"
+			},
+			{
+				"title": "Pre-Conference Training",
+				"url": "/conference-2021/training.html"
+			},
+			{
+				"title": "About Our Sponsors",
+				"url": "/conference-2021/sponsors.html"
+			},
+			{
+				"title": "Diversity Fund",
+				"url": "/conference-2021/diversity_fund.html"
+			},
+			{
+				"title": "Code of Conduct",
+				"url": "/conference-2021/conduct.html"
+			},
+			{
+				"title": "Sponsorship Programme",
+				"url": "/conference-2021/sponsorship.html"
+			},
+			{
+				"title": "Volunteers",
+				"url": "/conference-2021/volunteers.html"
+			},
+			{
+				"title": "International Attendees",
+				"url": "/conference-2021/international.html"
+			}
+			]
 		},
 		{
 			"title": "About",
