@@ -13,9 +13,25 @@
 			]
 		},
 		{
-			"title": "Contact Us",
-			"url": "/contact.html",
+			"title": "About",
+			"url": "about/",
 			"items": [
+			{
+				"title": "About AppSec NZ",
+				"url": "about/"
+			},
+			{
+				"title": "About OWASP NZ",
+				"url": "about/owaspnz.html"
+			},
+			{
+				"title": "Policies",
+				"url": "about/policies.html"
+			},
+			{
+				"title": "Contact Us",
+				"url": "about/contact.html"
+			}
 			]
 		}
 	]
