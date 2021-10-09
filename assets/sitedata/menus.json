@@ -1,36 +1,31 @@
 {
 	"menus": [{
 			"title": "2022 OWASP NZ Day",
-			"url": "/conference/",
-			"items": [
-	
-			]
+			"url": "/conference"
 		},
 		{
 			"title": "2021 AppSec NZ Conference",
-			"url": "/conference-2021",
-			"items": [
-			]
+			"url": "/conference-2021"
 		},
 		{
 			"title": "About",
-			"url": "about/",
+			"url": "/about",
 			"items": [
 			{
 				"title": "About AppSec NZ",
-				"url": "about/"
+				"url": "/about"
 			},
 			{
 				"title": "About OWASP NZ",
-				"url": "about/owaspnz.html"
+				"url": "/about/owaspnz.html"
 			},
 			{
 				"title": "Policies",
-				"url": "about/policies.html"
+				"url": "/about/policies.html"
 			},
 			{
 				"title": "Contact Us",
-				"url": "about/contact.html"
+				"url": "/about/contact.html"
 			}
 			]
 		}
