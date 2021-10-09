@@ -117,7 +117,7 @@
         var htmlstring = "";
         
         if(sponsors.length > 0) {
-	        '<h2>Spotlight: ' + current_sponsor["name"] + ' - ' + current_sponsor["levelDesc"] + '</h2>';
+	        htmlstring = '<h2>Spotlight: ' + current_sponsor["name"] + ' - ' + current_sponsor["levelDesc"] + '</h2>';
     	    htmlstring += '<a href="'+ current_sponsor["url"] + '" rel="sponsored nopener noreferrer" target="_blank" onclick="handleOutboundLinkClicks(event);"><img src="https://appsec.org.nz' + current_sponsor["image"] + '" alt="Image: Sponsor logo" /></a>';
         	htmlstring += '<p>' + current_sponsor["description"] + '</p>';
         	$(".member-spotlight").html(htmlstring);
@@ -141,7 +141,7 @@
     <section class="member-spotlight">
     </section>
     <section class="member-list">
-      <h2>Our Sponsors</h2>
+      <h2>2021 Conference Sponsors</h2>
       <div id="corp_member_div">
       </div>
       <div class="member-cta">

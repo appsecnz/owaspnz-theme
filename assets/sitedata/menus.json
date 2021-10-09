@@ -1,11 +1,11 @@
 {
 	"menus": [
 		{
-			"title": "Home",
+			"title": "HOME",
 			"url": "/"
 		},
 		{
-			"title": "2022 OWASP NZ Day",
+			"title": "2022 CONFERENCE",
 			"url": "/conference",
 			"items": [
 			{
@@ -35,7 +35,7 @@
 			]
 		},
 		{
-			"title": "2021 AppSec NZ Conference",
+			"title": "2021 CONFERENCE",
 			"url": "/conference-2021",
 			"items": [
 			{
@@ -81,7 +81,7 @@
 			]
 		},
 		{
-			"title": "About",
+			"title": "ABOUT",
 			"url": "/about",
 			"items": [
 			{
