@@ -97,7 +97,7 @@
     }
 
     $(function() {  
-      var sponsor_list = YAML.load('{{site_base_url}}/assets/sitedata/sponsors.yml');
+      var sponsor_list = YAML.load('{{site_base_url}}assets/sitedata/sponsors.yml');
       $.each(sponsor_list, function (index) {
           index = sponsors.push(this) - 1;  
           if(this.level == 3)
