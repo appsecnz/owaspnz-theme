@@ -117,9 +117,10 @@
         var htmlstring = "";
         
         if(sponsors.length > 0) {
-	        htmlstring = '<h2>Spotlight: ' + current_sponsor["name"] + ' - ' + current_sponsor["levelDesc"] + '</h2>';
+	        htmlstring = '<h2>Spotlight: ' + current_sponsor["name"] + '</h2>';
     	    htmlstring += '<a href="'+ current_sponsor["url"] + '" rel="sponsored nopener noreferrer" target="_blank" onclick="handleOutboundLinkClicks(event);"><img src="https://appsec.org.nz' + current_sponsor["image"] + '" alt="Image: Sponsor logo" /></a>';
         	htmlstring += '<p>' + current_sponsor["description"] + '</p>';
+        	htmlstring += '<h3>' + current_sponsor["name"] + ' was a ' + current_sponsor["levelDesc"] + ' of the 2021 Conference.</h3>'; 
         	$(".member-spotlight").html(htmlstring);
 
           	htmlstring = "";
@@ -141,7 +142,7 @@
     <section class="member-spotlight">
     </section>
     <section class="member-list">
-      <h2>2021 Conference Sponsors</h2>
+      <h2>2021 Premier Sponsors</h2>
       <div id="corp_member_div">
       </div>
       <div class="member-cta">
