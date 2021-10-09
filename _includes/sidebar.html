@@ -1,39 +1,14 @@
 <div class="sidebar" role="complementary">
-    {% assign pathparts = page.path | split: '/' %}
-
-    {% assign cleanpath = '' %}
-    {% for parts in pathparts %}
-        {% if parts.size == 1 or forloop.last == false %}{% assign cleanpath = cleanpath | append: parts | append: '/' %}{% endif %}
-    {% endfor %}
-    {% assign cleanpath = cleanpath | strip %}   
-{% assign infopath = cleanpath | append: 'info.md' %}
-{% assign lpath = cleanpath | append: 'leaders.md' %}
-{% assign onzpath = cleanpath | append: 'owaspnz-info.md' %}
-{% for static_file in site.static_files %}
-  {% if static_file.path contains infopath %}
-    {% assign project_info = true %}
-  {% elsif static_file.path contains lpath %}
-    {% assign has_leaders = true %}
-  {% elsif static_file.path contains onzpath %}
-    {% assign owaspnz_info = true %}
-  {% endif %}
-{% endfor %}
   
   {% include appsecnz-about.html %}
 
-  {% if project_info %}
   {% capture my_include %}{% include_relative /info.md %}{% endcapture %}
   {{ my_include | markdownify }}
-  {% endif %}
   
-  {% if has_leaders %}
   {% capture lead_include %}{% include_relative /leaders.md %}{% endcapture %}
   {{ lead_include | markdownify }}
-  {% endif %}
 
-  {% if owaspnz_info %}
   {% capture my_include %}{% include_relative /owaspnz-info.md %}{% endcapture %}
   {{ my_include | markdownify }}
-  {% endif %}
 
 </div>
