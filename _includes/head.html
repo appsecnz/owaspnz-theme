@@ -1,6 +1,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-{% assign default_desc = page.title | append: ' on the main website for The OWASP Foundation. OWASP is a nonprofit foundation that works to improve the security of software.' %}
+{% assign default_desc = page.title | append: ' on the main website for AppSec New Zealand Incorporated (AppSec NZ). AppSec NZ is a NZ-registered charity that supports and promotes application Security (AppSec) awareness and education.' %}
 {% assign dev_file = site.static_files | where: "name", "devsite.txt" %}
 {% if dev_file.size > 0 %}
 {% assign site_base_url = '/' %}
@@ -28,62 +28,27 @@
 <meta property="og:description" content="{{ page.pitch | default: default_desc }}">
 <meta propery="og:title" content="{{ title }}">
 <meta property="og:url" content="{{site.github.url | replace: 'www2.', '' | replace: 'http://', 'https://' | replace: 'owasp.github.io', 'owasp.org'}}{{page.url}}">
-<meta property="og:locale" content="en_US">
-{% if site.github.url contains 'projectchapter-example' %}
-<meta name="robots" content="noindex" />
-{% endif %}
+<meta property="og:locale" content="en_NZ">
+
 <!-- should probably look at using article at some point for www-community at least -->
 <meta property="og:type" content="website" />
 <meta property="og:image" content="{{site_base_url}}favicon.ico" />
 <meta http-equiv="X-Content-Type-Options" content="nosniff">
 <meta http-equiv="X-XSS-Protection" content="1; mode=block">
 
-{% assign canon_url = site.github.url | replace: 'owasp.github.io','owasp.org' %}
+{% assign canon_url = site.github.url | replace: 'appsecnz.github.io','appsec.org.nz' %}
 <link rel="canonical" href="{{canon_url | replace: 'www2.', ''}}{{page.url | replace: '.html', ''}}" />
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
-<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-4531126-1"></script> -->
-<!-- <script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-74WQ3KSQN8"></script>
+<script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
 
-  gtag('config', 'UA-4531126-1');
-</script> -->
-<!-- Google Analytics -->
-{% assign analytics = site.data.event-details.analytics | default: 'UA-4531126-1' %}
-
-<script src="{{site_base_url}}assets/js/js.cookie.js"></script>
-<script>
-  if(Cookies.get('cookies-ok') == 'true' && window.ga === undefined)
-  {
-    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-    ga('create', '{{ analytics }}', 'auto');
-    ga('send', 'pageview');
-  }
-  else if (Cookies.get('cookies-ok') == 'true')
-  {
-    ga('send', 'pageview');
-  }
-
-  function handleOutboundLinkClicks(event) {
-    var href = '';
-    if(event.target.href == undefined)
-      href = event.target.parentElement.href;
-    else
-      href = event.target.href
-  if(Cookies.get('cookies-ok') == 'true'){  
-    
-    ga('send', 'event', {
-      eventCategory: 'Outbound Link',
-      eventAction: 'click',
-      eventLabel: href,
-      transport: 'beacon'
-    });
-  }
-}
+  gtag('config', 'G-74WQ3KSQN8');
 </script>
-<script async src='https://www.google-analytics.com/analytics.js'></script>
-<!-- End Google Analytics -->
+
 <link rel="stylesheet" href="{{site_base_url}}assets/css/styles.css">
 <link rel="shortcut icon" type="images/x-icon" href="{{site_base_url}}favicon.ico">
 
@@ -92,4 +57,4 @@
 <script src="{{site_base_url}}assets/js/yaml.min.js"></script>
 <script src="{{site_base_url}}assets/js/luxon.min.js"></script>
 <script src="{{site_base_url}}assets/js/kjua.min.js"></script>
-<title>{{ page.title }}{% unless page.title contains 'OWASP' %} | OWASP{% endunless %}</title>
+<title>{{ page.title }}{% unless page.title contains 'AppSec NZ' %} | AppSec NZ{% endunless %}</title>
