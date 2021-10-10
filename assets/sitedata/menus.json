@@ -9,6 +9,10 @@
 			"url": "/conference-2022",
 			"items": [
 			{
+				"title": "Conference Home Page",
+				"url": "/conference-2022"
+			},
+			{
 				"title": "Call for Sponsors",
 				"url": "/conference-2022/sponsorship.html"
 			},
@@ -38,6 +42,10 @@
 			"title": "2021 CONFERENCE",
 			"url": "/conference-2021",
 			"items": [
+			{
+				"title": "Conference Home Page",
+				"url": "/conference-2021"
+			},
 			{
 				"title": "Conference Schedule",
 				"url": "/conference-2021/schedule.html"
