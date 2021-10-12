@@ -126,10 +126,11 @@
         	$(".member-spotlight").html(htmlstring);
 
           	htmlstring = "";
-          	while ( counter < numberOfImages  && counter++ < sponsors.length ) {
+          	while ( counter < numberOfImages  && (counter + 1) < sponsors.length ) {
             	current_sponsor = get_random_sponsor(sponsors, usedIndexList)
             	if (current_sponsor)
             	{
+                	counter++;
                 	htmlstring += '<a href="'+ current_sponsor["url"] + '" class="member-logo" rel="sponsored noopener noreferrer" target="_blank" onclick="handleOutboundLinkClicks(event);"><img src="https://appsec.org.nz' + current_sponsor["image"] + '" alt="image"/></a>';                                
             	}
           	}
