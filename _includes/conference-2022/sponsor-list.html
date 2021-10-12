@@ -17,7 +17,7 @@
     function build_sponsor_html( currSponsor ) {
        var htmlText = '';
        if( currSponsor ) {
-    	   htmlText += '<h4><a href="'+ currSponsor["url"] + '" rel="sponsored nopener noreferrer" target="_blank" onclick="handleOutboundLinkClicks(event);">' + currSponsor["name"] + '</h3>';
+    	   htmlText += '<h4><a href="'+ currSponsor["url"] + '" rel="sponsored nopener noreferrer" target="_blank" onclick="handleOutboundLinkClicks(event);">' + currSponsor["name"] + '</a></h3>';
     	   htmlText += '<p><img src="' + currSponsor["image"] + '" alt="Image: Logo-' + currSponsor["name"] + '" /></p>';
     	   htmlText += '<p>' + currSponsor["description"] +'</p>';
     	   htmlText += '<hr />';
@@ -48,14 +48,11 @@
             	  break;
               default:
             	  other_indices.push(index);
-            	  break;
               }
     		  
     	  }
         });
 
-        var usedIndexList = [];
-        var counter = 0;
         var current_sponsor;
         var htmlstring = "";
         
@@ -66,8 +63,8 @@
         	else {
         		htmlstring += '<h3>Diamond Sponsors</h3>';
         	}
-        	for( index in diamond_indices ) {
-        		current_sponsor = sponsors[index];
+        	for( dIndex in diamond_indices ) {
+        		current_sponsor = sponsors[dIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
         }
@@ -79,8 +76,8 @@
         	else {
         		htmlstring += '<h3>Platinum Sponsors</h3>';
         	}
-        	for( index in platinum_indices ) {
-        		current_sponsor = sponsors[index];
+        	for( pIndex in platinum_indices ) {
+        		current_sponsor = sponsors[pIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
         }
@@ -92,8 +89,8 @@
         	else {
         		htmlstring += '<h3>Gold Sponsors</h3>';
         	}
-        	for( index in gold_indices ) {
-        		current_sponsor = sponsors[index];
+        	for( gIndex in gold_indices ) {
+        		current_sponsor = sponsors[gIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
         }
@@ -105,8 +102,8 @@
         	else {
         		htmlstring += '<h3>Silver Sponsors</h3>';
         	}
-        	for( index in silver_indices ) {
-        		current_sponsor = sponsors[index];
+        	for( sIndex in silver_indices ) {
+        		current_sponsor = sponsors[sIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
         }
@@ -118,14 +115,18 @@
         	else {
         		htmlstring += '<h3>Bronze Sponsors</h3>';
         	}
-        	for( index in bronze_indices ) {
-        		current_sponsor = sponsors[index];
+        	for( bIndex in bronze_indices ) {
+        		current_sponsor = sponsors[bIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
         }
         
         if( other_indices.length > 0 ) {
-        	
+        	for( oIndex in other_indices ) {
+        		current_sponsor = sponsors[oIndex];
+        		htmlstring += '<h3>' + current_sponsor["level"] + '</h3>';
+        		htmlstring += build_sponsor_html( current_sponsor );
+        	}
         }
         
        	$("#sponsor_list_div").html(htmlstring);
