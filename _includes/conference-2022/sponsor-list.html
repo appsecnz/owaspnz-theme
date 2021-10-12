@@ -18,7 +18,7 @@
        var htmlText = '';
        if( currSponsor ) {
     	   htmlText += '<h4><a href="'+ currSponsor["url"] + '" rel="sponsored nopener noreferrer" target="_blank" onclick="handleOutboundLinkClicks(event);">' + currSponsor["name"] + '</a></h3>';
-    	   htmlText += '<p><img src="' + currSponsor["image"] + '" alt="Image: Logo-' + currSponsor["name"] + '" /></p>';
+    	   htmlText += '<p><img src="' + currSponsor["image"] + '" width="400" alt="Image: Logo-' + currSponsor["name"] + '" /></p>';
     	   htmlText += '<p>' + currSponsor["description"] +'</p>';
     	   htmlText += '<hr />';
        }
