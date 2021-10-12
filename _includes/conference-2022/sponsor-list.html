@@ -64,7 +64,8 @@
         	else {
         		htmlstring += '<h3>Diamond Sponsors</h3>';
         	}
-        	for( sponsorIndex in diamond_indices ) {
+        	for( index in diamond_indices ) {
+        		sponsorIndex = diamond_indices[index];
         		current_sponsor = sponsors[sponsorIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
@@ -77,7 +78,8 @@
         	else {
         		htmlstring += '<h3>Platinum Sponsors</h3>';
         	}
-        	for( sponsorIndex in platinum_indices ) {
+        	for( index in platinum_indices ) {
+        		sponsorIndex = platinum_indices[index];
         		current_sponsor = sponsors[sponsorIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
@@ -90,7 +92,8 @@
         	else {
         		htmlstring += '<h3>Gold Sponsors</h3>';
         	}
-        	for( sponsorIndex in gold_indices ) {
+        	for( index in gold_indices ) {
+        		sponsorIndex = gold_indices[index];
         		current_sponsor = sponsors[sponsorIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
@@ -103,7 +106,8 @@
         	else {
         		htmlstring += '<h3>Silver Sponsors</h3>';
         	}
-        	for( sponsorIndex in silver_indices ) {
+        	for( index in silver_indices ) {
+        		sponsorIndex = silver_indices[index];
         		current_sponsor = sponsors[sponsorIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
@@ -116,14 +120,16 @@
         	else {
         		htmlstring += '<h3>Bronze Sponsors</h3>';
         	}
-        	for( sponsorIndex in bronze_indices ) {
+        	for( index in bronze_indices ) {
+        		sponsorIndex = bronze_indices[index];
         		current_sponsor = sponsors[sponsorIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
         }
         
         if( other_indices.length > 0 ) {
-        	for( sponsorIndex in other_indices ) {
+        	for( index in other_indices ) {
+        		sponsorIndex = other_indices[index];
         		current_sponsor = sponsors[sponsorIndex];
         		htmlstring += '<h3>' + current_sponsor["level"] + '</h3>';
         		htmlstring += build_sponsor_html( current_sponsor );
