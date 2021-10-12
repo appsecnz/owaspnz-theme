@@ -31,7 +31,8 @@
           else if( randomIndex >= subList.length ){
             randomIndex = 0;
           }
-          if (randomIndex == cycleIndex){ // we could not find a plat sponsor not already in the list....            
+          if (randomIndex == cycleIndex){ 
+        	// we could not find a sponsor from this sub-list, not already in the list            
             break;
           }
         }
@@ -124,7 +125,7 @@
         	$(".member-spotlight").html(htmlstring);
 
           	htmlstring = "";
-          	while (counter < numberOfImages) {
+          	while ( counter < numberOfImages  && counter < sponsors.length ) {
             	current_sponsor = get_random_sponsor(sponsors, usedIndexList)
             	if (current_sponsor)
             	{
