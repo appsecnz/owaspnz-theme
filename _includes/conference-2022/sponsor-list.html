@@ -54,6 +54,7 @@
         });
 
         var current_sponsor;
+        var sponsorIndex = 0;
         var htmlstring = "";
         
         if( diamond_indices.length > 0 ) {
@@ -63,8 +64,8 @@
         	else {
         		htmlstring += '<h3>Diamond Sponsors</h3>';
         	}
-        	for( dIndex in diamond_indices ) {
-        		current_sponsor = sponsors[dIndex];
+        	for( sponsorIndex in diamond_indices ) {
+        		current_sponsor = sponsors[sponsorIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
         }
@@ -76,8 +77,8 @@
         	else {
         		htmlstring += '<h3>Platinum Sponsors</h3>';
         	}
-        	for( pIndex in platinum_indices ) {
-        		current_sponsor = sponsors[pIndex];
+        	for( sponsorIndex in platinum_indices ) {
+        		current_sponsor = sponsors[sponsorIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
         }
@@ -89,8 +90,8 @@
         	else {
         		htmlstring += '<h3>Gold Sponsors</h3>';
         	}
-        	for( gIndex in gold_indices ) {
-        		current_sponsor = sponsors[gIndex];
+        	for( sponsorIndex in gold_indices ) {
+        		current_sponsor = sponsors[sponsorIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
         }
@@ -102,8 +103,8 @@
         	else {
         		htmlstring += '<h3>Silver Sponsors</h3>';
         	}
-        	for( sIndex in silver_indices ) {
-        		current_sponsor = sponsors[sIndex];
+        	for( sponsorIndex in silver_indices ) {
+        		current_sponsor = sponsors[sponsorIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
         }
@@ -115,15 +116,15 @@
         	else {
         		htmlstring += '<h3>Bronze Sponsors</h3>';
         	}
-        	for( bIndex in bronze_indices ) {
-        		current_sponsor = sponsors[bIndex];
+        	for( sponsorIndex in bronze_indices ) {
+        		current_sponsor = sponsors[sponsorIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
         }
         
         if( other_indices.length > 0 ) {
-        	for( oIndex in other_indices ) {
-        		current_sponsor = sponsors[oIndex];
+        	for( sponsorIndex in other_indices ) {
+        		current_sponsor = sponsors[sponsorIndex];
         		htmlstring += '<h3>' + current_sponsor["level"] + '</h3>';
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
