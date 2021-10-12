@@ -113,22 +113,23 @@
         var usedIndexList = [];
         var counter = 0;
         var numberOfImages = 9;
-        var current_sponsor = get_random_sponsor(sponsors, usedIndexList);
+        var current_sponsor;
         var htmlstring = "";
         
         if(sponsors.length > 0) {
+            current_sponsor = get_random_sponsor(sponsors, usedIndexList);
+
 	        htmlstring = '<h2>Spotlight: ' + current_sponsor["name"] + '</h2>';
     	    htmlstring += '<a href="'+ current_sponsor["url"] + '" rel="sponsored nopener noreferrer" target="_blank" onclick="handleOutboundLinkClicks(event);"><img src="https://appsec.org.nz' + current_sponsor["image"] + '" alt="Image: Sponsor logo" /></a>';
         	htmlstring += '<p>' + current_sponsor["description"] + '</p>';
-        	htmlstring += '<h3>' + current_sponsor["name"] + ' was a ' + current_sponsor["levelDesc"] + ' of the 2021 Conference</h3>'; 
+        	htmlstring += '<h3>' + current_sponsor["name"] + ' is a ' + current_sponsor["levelDesc"] + ' of the 2022 Conference</h3>'; 
         	$(".member-spotlight").html(htmlstring);
 
           	htmlstring = "";
-          	while (counter < numberOfImages) {
+          	while ( counter < numberOfImages  && counter++ < sponsors.length ) {
             	current_sponsor = get_random_sponsor(sponsors, usedIndexList)
             	if (current_sponsor)
             	{
-                	counter++;
                 	htmlstring += '<a href="'+ current_sponsor["url"] + '" class="member-logo" rel="sponsored noopener noreferrer" target="_blank" onclick="handleOutboundLinkClicks(event);"><img src="https://appsec.org.nz' + current_sponsor["image"] + '" alt="image"/></a>';                                
             	}
           	}
