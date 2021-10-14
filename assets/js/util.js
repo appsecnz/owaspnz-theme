@@ -49,6 +49,10 @@ $(function() {
   {
     $(location).attr('href','https://owasp.org/');
   }
+  if($(location).attr('href').indexOf('appsec.nz.org') >= 0)
+  {
+    $(location).attr('href','https://appsec.org.nz/');
+  }
 });
 
 // browser version checker and notifier
