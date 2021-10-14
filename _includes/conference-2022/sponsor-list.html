@@ -12,6 +12,7 @@
     var gold_indices = []; 
     var silver_indices = [];
     var bronze_indices = [];
+    var supporting_indices = [];
     var other_indices = [];
     
     function build_sponsor_html( currSponsor ) {
@@ -45,6 +46,9 @@
             	  break;
               case 5:
             	  bronze_indices.push(index);
+            	  break;
+              case 6:
+            	  supporting_indices.push(index);
             	  break;
               default:
             	  other_indices.push(index);
@@ -113,7 +117,7 @@
         	}
         }
         
-        if( bronze_indices.length >0 ) {
+        if( bronze_indices.length > 0 ) {
         	if( bronze_indices.length == 1 ){
         		htmlstring += '<h3>Bronze Sponsor</h3>';
         	}
@@ -132,6 +136,20 @@
         		sponsorIndex = other_indices[index];
         		current_sponsor = sponsors[sponsorIndex];
         		htmlstring += '<h3>' + current_sponsor["level"] + '</h3>';
+        		htmlstring += build_sponsor_html( current_sponsor );
+        	}
+        }
+        
+        if( supporting_indices.length > 0 ) {
+        	if( supporting_indices.length == 1 ){
+        		htmlstring += '<h3>Supporting Sponsor</h3>';
+        	}
+        	else {
+        		htmlstring += '<h3>Supporting Sponsors</h3>';
+        	}
+        	for( index in supporting_indices ) {
+        		sponsorIndex = supporting_indices[index];
+        		current_sponsor = sponsors[sponsorIndex];
         		htmlstring += build_sponsor_html( current_sponsor );
         	}
         }
