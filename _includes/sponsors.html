@@ -99,16 +99,18 @@
     $(function() {  
       var sponsor_list = YAML.load('{{site_base_url}}assets/sitedata/sponsors-2021.yml');
       $.each(sponsor_list, function (index) {
-          index = sponsors.push(this) - 1;  
-          if(this.level == 3)
-            gold_indices.push(index);
-          else if (this.level == 2)
-            platinum_indices.push(index);
-          else if (this.level == 1)
-        	diamond_indices.push(index);
-          else
-            other_indices.push(index);        
-        });
+    	  if( this.active ) {
+            	index = sponsors.push(this) - 1;  
+            	if(this.level == 3)
+              	gold_indices.push(index);
+            	else if (this.level == 2)
+              	platinum_indices.push(index);
+            	else if (this.level == 1)
+          		diamond_indices.push(index);
+            	else
+              	other_indices.push(index);
+      	  }
+      });
 
         var usedIndexList = [];
         var counter = 0;
