@@ -28,6 +28,8 @@
 
     $(function() {  
       var sponsor_list = YAML.load('{{site_base_url}}assets/sitedata/sponsors-2022.yml');
+      sponsor_list.sort((a, b) => (a.name > b.name) ? 1 : -1 );
+      
       $.each(sponsor_list, function (index) {
     	  if( this.active ) {
               index = sponsors.push(this) - 1;  
