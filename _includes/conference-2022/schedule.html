@@ -31,10 +31,24 @@
        return htmlText;
     }
     
-    function build_plenary_td( currTalk, numTracks ) {
+    function build_plenary_td( currTalk, numTracks, isOddRow ) {
     	var htmlText = '';
     	
-    	htmlText += '<td colspan="' + (numTracks + 1) + '" style="background-color: #D98B66; text-align: center; margin: 15px 5px;">';
+    	htmlText += '<td colspan="' + (numTracks + 1) + '" style="background-color: ';
+    	if( currTalk["info"] ) {
+    		htmlText += '#D98B66';
+    	}
+    	else {
+    		if( isOddRow ) {
+    			htmlText += '#B9C2DC';
+    		}
+    		else {
+    			htmlText += '#EEE';
+    		}
+    		
+    	}
+    	
+    	htmlText += '; text-align: center; margin: 15px 5px;">';
     	if( currTalk["title"] ) {
     		htmlText += '<strong>' + currTalk["title"] + '</strong>';
     		if( currTalk["name"]) {
@@ -196,7 +210,7 @@
        			blockTalks = talk_info[dayIndex][blockIndex];
        			for( const current_talk of blockTalks ) {
        				if(current_talk.plenary) {
-       					htmlString += build_plenary_td( current_talk, numTracks );
+       					htmlString += build_plenary_td( current_talk, numTracks, oddRow );
        					lastPlenary = true;
        				}
        				else {
