@@ -40,10 +40,10 @@
     	}
     	else {
     		if( isOddRow ) {
-    			htmlText += '#B9C2DC';
+    			htmlText += '#EEE';
     		}
     		else {
-    			htmlText += '#EEE';
+    			htmlText += '#B9C2DC';
     		}
     		
     	}
@@ -219,9 +219,9 @@
        			}
        			if( !lastPlenary ) {
            			htmlString += build_breakout_td( oddRow );
-       				oddRow = !oddRow;
-       			}
+        			}
        			htmlString += '</tr>\n';
+  				oddRow = !oddRow;
        			lastPlenary = false;
        		}
        	
