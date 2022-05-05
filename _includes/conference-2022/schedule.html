@@ -198,7 +198,7 @@
        		dayIndex = currDay["day"];
        		oddRow = true;
        		dayBlocks = block_info[dayIndex];
-       		htmlString += '<h2>' + currDay["dayofweek"] + ', ' + currDay["date"] + ' ' + currDay["month"] + ' ' + currDay["year"] + '</h2>\n\n';
+       		htmlString += '<h2 id="schedule-day-' + dayIndex + '">' + currDay["dayofweek"] + ', ' + currDay["date"] + ' ' + currDay["month"] + ' ' + currDay["year"] + '</h2>\n\n';
        		htmlString += '<table width="100%">\n';
        		htmlString += build_header_row( track_info );
        		for( const currBlock of dayBlocks ) {
