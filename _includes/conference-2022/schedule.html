@@ -83,7 +83,7 @@
     		htmlText += '<td style="background-color: #B9C2DC; text-align: center; font-weight: bold; margin: 15px 5px; width: ' + currTrack["width"] + '%;">\n';
     		htmlText += currTrack["name"] + '\n<br />\n' + currTrack["location"];
     		if( currTrack["overflow"] ) {
-    			htmlText += ' (Overflow: ' + currTrack["overflow"] + ')';
+    			htmlText += '\n<br />\n(Overflow: ' + currTrack["overflow"] + ')';
     		}
     		htmlText += '</td>\n';
     	}
@@ -171,16 +171,16 @@
        			blockTalks = talk_info[dayIndex][blockIndex];
        			for( const current_talk of blockTalks ) {
        				if(current_talk.plenary) {
-       					htmlString += build_plenary_td( current_talk );
+       					htmlString += build_plenary_td( current_talk, numTracks );
        					lastPlenary = true;
        				}
        				else {
        					htmlString += build_talk_td( current_talk, oddRow );
        				}
        			}
-       			htmlString += build_breakout_td( oddRow );
        			htmlString += '</tr>\n';
        			if( !lastPlenary ) {
+           			htmlString += build_breakout_td( oddRow );
        				oddRow = !oddRow;
        			}
        			lastPlenary = false;
