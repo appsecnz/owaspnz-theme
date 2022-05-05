@@ -61,7 +61,11 @@
     		htmlText = '<td style="background-color: #B9C2DC; text-align: center; margin: 15px 5px;">\n';
     	}
     	htmlText += '<strong><a href="/conference/speakers.html#' + currTalk["anchor"] + '" target="speakers">';
-    	htmlText += currTalk["title"] + '</a></strong>\n<br />\n<em>' + currTalk["name"];
+    	htmlText += currTalk["title"] + '</a></strong>\n';
+    	if( currTalk["remote"]) {
+    		htmlText += '<br />\n(Remote Presentation)';
+    	}
+    	htmlText += '<br />\n<em>' + currTalk["name"];
     	if( currTalk["org"] ) {
     		htmlText += ' - ' + currTalk["org"];
     	}
