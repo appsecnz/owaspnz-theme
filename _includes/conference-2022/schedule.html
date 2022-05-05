@@ -16,9 +16,15 @@
     function build_block_html( currBlock ) {
        var htmlText = '';
        if( currBlock ) {
-    	   htmlText += '<td style="vertical-align: middle; text-align: right;">' + currBlock["start"];
-    	   if(currBlock["end"]) {
-    		   htmlText+='&nbsp;-&nbsp;' + currBlock["end"];
+    	   htmlText += '<td style="vertical-align: middle; text-align: right;">';
+    	   if(!currBlock["start"]) {
+    		   htmlText += "&nbsp;"
+    	   }
+    	   else {
+    		   htmlText += currBlock["start"];
+    		   if(currBlock["end"]) {
+    			   htmlText+='&nbsp;-&nbsp;' + currBlock["end"];
+    		   }
     	   }
     	   htmlText += '</td>\n';
        }
@@ -153,11 +159,12 @@
         var htmlString = "";
         var dayBlocks;
         var blockTalks;
-        var oddRow = true;
+        var oddRow;
         var lastPlenary = false;
         
        	for( const currDay of day_info ) {
        		dayIndex = currDay["day"];
+       		oddRow = true;
        		dayBlocks = block_info[dayIndex];
        		htmlString += '<h2>' + currDay["dayofweek"] + ', ' + currDay["date"] + ' ' + currDay["month"] + ' ' + currDay["year"] + '</h2>\n\n';
        		htmlString += '<table width="100%">\n';
