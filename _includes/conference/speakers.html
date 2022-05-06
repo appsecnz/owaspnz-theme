@@ -7,6 +7,7 @@
 {% endif %}
   <script type="text/javascript">
     var dirName = '{{ include.datadir }}';
+    console.log( 'dirname = "' + dirName + '"');
     var track_titles = [];
     var day_info = [];
     var block_info = [];
@@ -103,7 +104,9 @@
     }
     
     $(function() {  
-      var track_list = YAML.load('{{site_base_url}}assets/sitedata/{{dirName}}/tracks.yml');
+      const trackPath = '{{site_base_url}}assets/sitedata/{{dirName}}/tracks.yml';
+      console.log( 'trackPath ="' + trackPath + '"');
+      var track_list = YAML.load(trackPath);
       track_list.sort((a, b) => (a.id > b.id) ? 1 : -1 );
       
       $.each(track_list, function(trackIndex) {
