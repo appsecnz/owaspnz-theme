@@ -14,7 +14,7 @@
     
    function build_talk_html( talkIndex ) {
     	const currTalk = talk_info[talkIndex];
-    	const talkNumber = talkIndex + 1;
+    	const talkNumber = (talkIndex + 1);
     	
     	const dayIndex = currTalk["day"];
     	const dayObj   = day_info[dayIndex];
@@ -27,7 +27,7 @@
     	
     	var htmlText = '<hr />\n\n';
     	
-    	htmlText += '<h3 id="' + currTalk["anchor"] + '>' + currTalk["title"] + '<h3>\n';
+    	htmlText += '<h3 id="' + currTalk["anchor"] + '">' + currTalk["title"] + '<h3>\n';
     	htmlText += '<p><em>' + currTalk["name"];
     	if( currTalk["org"] ) {
     		htmlText += ' - ' + currTalk["org"];
