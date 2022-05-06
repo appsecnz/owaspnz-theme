@@ -6,6 +6,7 @@
 {% assign site_base_url = 'https://appsec.org.nz/' %}
 {% endif %}
   <script type="text/javascript">
+    var dirName = '{{ include.datadir }}';
     var track_info = [];
     var day_info = [];
     var block_info = [];
@@ -130,7 +131,7 @@
     }
 
     $(function() {  
-      var track_list = YAML.load('{{site_base_url}}assets/sitedata/tracks-2022.yml');
+      var track_list = YAML.load('{{site_base_url}}assets/sitedata/{{dirName}}/tracks.yml');
       track_list.sort((a, b) => (a.id > b.id) ? 1 : -1 );
       
       $.each(track_list, function(trackIndex) {
@@ -138,7 +139,7 @@
       });
       numTracks = track_info.length;
       
-      var day_list = YAML.load('{{site_base_url}}assets/sitedata/schedule-2022.yml');
+      var day_list = YAML.load('{{site_base_url}}assets/sitedata/{{dirName}}/schedule.yml');
       day_list.sort((a, b) => (a.day > b.day) ? 1 : -1 );
 
       $.each(day_list, function(dayIndex) {
@@ -150,7 +151,7 @@
   		block_info.push(blockData);
       });
         
-      var talk_list = YAML.load('{{site_base_url}}assets/sitedata/talks-2022.yml');
+      var talk_list = YAML.load('{{site_base_url}}assets/sitedata/{{dirName}}/talks.yml');
       talk_list.sort((a, b) => (a.day > b.day) ? 1 : ((a.block > b.block) ? 1 : ((a.track > b.track) ? 1 : -1) ) );
       
       var talkDay, talkBlock, talkTrack, lastDay = 0, lastBlock = 0;
