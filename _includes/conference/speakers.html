@@ -6,8 +6,6 @@
 {% assign site_base_url = 'https://appsec.org.nz/' %}
 {% endif %}
   <script type="text/javascript">
-    var dirName = '{{ include.datadir }}';
-    console.log( 'dirname = "' + dirName + '"');
     var track_titles = [];
     var day_info = [];
     var block_info = [];
@@ -104,7 +102,7 @@
     }
     
     $(function() {  
-      const trackPath = '{{site_base_url}}assets/sitedata/{{dirName}}/tracks.yml';
+      const trackPath = '{{site_base_url}}assets/sitedata/{{include.datadir}}/tracks.yml';
       console.log( 'trackPath ="' + trackPath + '"');
       var track_list = YAML.load(trackPath);
       track_list.sort((a, b) => (a.id > b.id) ? 1 : -1 );
@@ -113,7 +111,7 @@
     	trackIndex = track_titles.push(this.name) - 1;
       });
       
-      var day_list = YAML.load('{{site_base_url}}assets/sitedata/{{dirName}}/schedule.yml');
+      var day_list = YAML.load('{{site_base_url}}assets/sitedata/{{include.datadir}}/schedule.yml');
       day_list.sort((a, b) => (a.day > b.day) ? 1 : -1 );
 
       $.each(day_list, function(dayIndex) {
@@ -125,7 +123,7 @@
   		block_info.push(blockData);
       });
         
-      var talk_list = YAML.load('{{site_base_url}}assets/sitedata/{{dirName}}/talks.yml');
+      var talk_list = YAML.load('{{site_base_url}}assets/sitedata/{{include.datadir}}/talks.yml');
       talk_list.sort((a, b) => (a.title > b.title) ? 1 : -1);
       
       $.each(talk_list, function(talkIndex) {
