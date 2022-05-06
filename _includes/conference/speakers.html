@@ -77,6 +77,19 @@
     	}
     	else {
     		htmlText += currTalk["bio"];
+    		if( currTalk["twitter"] || currTalk["linkedin"] ) {
+    			htmlText += ' [';
+    			if( currTalk["linkedin"] ) {
+    				htmlText += '<a href="https://www.linkedin.com/in/' + currTalk["linkedin"] + '/" target="linkedin">LinkedIn</a>';
+    				if( currTalk["twitter"] ) {
+    					htmlText += ' ';
+    				}
+    			}
+    			if( currTalk["twitter"] ) {
+    				htmlText += 'Twitter: <a href="https://twitter.com/' + currTalk["twitter"] + '" target="twitter">@' + currTalk["twitter"] + '</a>';
+    			}
+    			htmlText += ']';
+    		}
     	}
     	htmlText += '</p>\n\n';
     	
@@ -87,6 +100,19 @@
         	}
         	else {
         		htmlText += currTalk["bio2"];
+        		if( currTalk["twitter2"] || currTalk["linkedin2"] ) {
+        			htmlText += ' [';
+        			if( currTalk["linkedin2"] ) {
+        				htmlText += '<a href="https://www.linkedin.com/in/' + currTalk["linkedin2"] + '/" target="linkedin">LinkedIn</a>';
+        				if( currTalk["twitter2"] ) {
+        					htmlText += ' ';
+        				}
+        			}
+        			if( currTalk["twitter2"] ) {
+        				htmlText += 'Twitter: <a href="https://twitter.com/' + currTalk["twitter2"] + '" target="twitter">@' + currTalk["twitter2"] + '</a>';
+        			}
+        			htmlText += ']';
+        		}
         	}
         	htmlText += '</p>\n\n';
     	}
@@ -98,6 +124,19 @@
         	}
         	else {
         		htmlText += currTalk["bio3"];
+        		if( currTalk["twitter3"] || currTalk["linkedin3"] ) {
+        			htmlText += ' [';
+        			if( currTalk["linkedin3"] ) {
+        				htmlText += '<a href="https://www.linkedin.com/in/' + currTalk["linkedin3"] + '/" target="linkedin">LinkedIn</a>';
+        				if( currTalk["twitter3"] ) {
+        					htmlText += ' ';
+        				}
+        			}
+        			if( currTalk["twitter3"] ) {
+        				htmlText += 'Twitter: <a href="https://twitter.com/' + currTalk["twitter3"] + '" target="twitter">@' + currTalk["twitter3"] + '</a>';
+        			}
+        			htmlText += ']';
+        		}
         	}
         	htmlText += '</p>\n\n';
     	}
