@@ -52,11 +52,15 @@
     	}
     	htmlText += '<br />\n' + trackName + '&nbsp;-&nbsp;' + dayObj["dayofweek"] + ',&nbsp;' + blockObj["start"] + '\n</p>\n\n';
     	
-    	htmlText += '<h4 id="abstract-' + talkNumber + '">Abstract</h4>\n\n';
-    	htmlText += '<p>' + currTalk["abstract"] + '</p>\n\n';
+    	if(currTalk["abstract"]) {
+    		htmlText += '<h4 id="abstract-' + talkNumber + '">Abstract</h4>\n\n';
+        	htmlText += '<p>' + currTalk["abstract"] + '</p>\n\n';
+    	}
 
-    	htmlText += '<h4 id="description-' + talkNumber + '">Description</h4>\n\n';
-    	htmlText += '<p>' + currTalk["description"] + '</p>\n\n';
+    	if(currTalk["description"]) {
+        	htmlText += '<h4 id="description-' + talkNumber + '">Description</h4>\n\n';
+        	htmlText += '<p>' + currTalk["description"] + '</p>\n\n';
+    	}
     	
     	htmlText += '<h4 id="speaker-bio-' + talkNumber + '">Speaker ';
     	if(currTalk["name2"]) {
