@@ -268,14 +268,15 @@
       if( talks_for_day.length > 0 ) {
     	  talk_info.push(talks_for_day);
       }
+
+      var htmlString ='';
+      var dayIndex = 0;
+      for( const currDay of day_info ) {
+    	  htmlString += build_day_heading( currDay );
+    	  htmlString += build_day_table( currDay );
+      }
       
-    	var dayIndex = 0;
-	 	for( const currDay of day_info ) {
-       		htmlString += build_day_heading( currDay );
-       		htmlString += build_day_table( currDay );
-       	}
-                
-       	$("#schedule_div").html(htmlString);
+      $("#schedule_div").html(htmlString);
           
     });
   </script>
