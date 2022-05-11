@@ -31,7 +31,8 @@
           else if( randomIndex >= subList.length ){
             randomIndex = 0;
           }
-          if (randomIndex == cycleIndex){ // we could not find a plat sponsor not already in the list....            
+          if (randomIndex == cycleIndex){ 
+        	// we could not find a sponsor from this sub-list, not already in the list            
             break;
           }
         }
@@ -97,20 +98,20 @@
     }
 
     $(function() {  
-      var sponsor_list = YAML.load('{{site_base_url}}assets/sitedata/sponsors-2022.yml');
+      var sponsor_list = YAML.load('{{site_base_url}}assets/sitedata/{{include.datadir}}/sponsors.yml');
       $.each(sponsor_list, function (index) {
     	  if( this.active ) {
-            	index = sponsors.push(this) - 1;  
-            	if(this.level == 3)
-              	gold_indices.push(index);
-            	else if (this.level == 2)
-              	platinum_indices.push(index);
-            	else if (this.level == 1)
-          		diamond_indices.push(index);
-            	else
-              	other_indices.push(index);
-      	  }
-      });
+          	index = sponsors.push(this) - 1;  
+          	if(this.level == 3)
+            	gold_indices.push(index);
+          	else if (this.level == 2)
+            	platinum_indices.push(index);
+          	else if (this.level == 1)
+        		diamond_indices.push(index);
+          	else
+            	other_indices.push(index);
+    	  }
+        });
 
         var usedIndexList = [];
         var counter = 0;
@@ -123,8 +124,8 @@
 
 	        htmlstring = '<h2>Spotlight: ' + current_sponsor["name"] + '</h2>';
     	    htmlstring += '<a href="'+ current_sponsor["url"] + '" rel="sponsored nopener noreferrer" target="_blank" onclick="handleOutboundLinkClicks(event);"><img src="https://appsec.org.nz' + current_sponsor["image"] + '" alt="Image: Sponsor logo" /></a>';
-        	htmlstring += '<p>' + current_sponsor["description"] + '</p>';
-        	htmlstring += '<h3>' + current_sponsor["name"] + ' is a ' + current_sponsor["levelDesc"] + ' of the 2022 Conference</h3>'; 
+        	htmlstring += '<p>' + current_sponsor["spotlight"] + '</p>';
+        	htmlstring += '<h3>' + current_sponsor["levelDesc"] + ' - {{include.eventName}}</h3>'; 
         	$(".member-spotlight").html(htmlstring);
 
           	htmlstring = "";
@@ -133,7 +134,7 @@
             	if (current_sponsor)
             	{
                 	counter++;
-                	htmlstring += '<a href="'+ current_sponsor["url"] + '" class="member-logo" rel="sponsored noopener noreferrer" target="_blank" onclick="handleOutboundLinkClicks(event);"><img src="https://appsec.org.nz' + current_sponsor["image"] + '" alt="image"/></a>';                                
+            		htmlstring += '<a href="'+ current_sponsor["url"] + '" class="member-logo" rel="sponsored noopener noreferrer" target="_blank" onclick="handleOutboundLinkClicks(event);"><img src="https://appsec.org.nz' + current_sponsor["image"] + '" alt="image"/></a>';                                
             	}
           	}
 
