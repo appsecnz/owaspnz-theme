@@ -139,6 +139,9 @@
           	}
 
           	$("#corp_member_div").html(htmlstring);
+          	
+          	var headingText = "Sponsors - {{include.eventName}}";
+          	$("#sponsor_heading_div").html(headingText);
           
         }
     });
@@ -147,7 +150,7 @@
     <section class="member-spotlight">
     </section>
     <section class="member-list">
-      <h2>2022 Conference Sponsors</h2>
+      <h2 id="sponsor_heading_div"></h2>
       <div id="corp_member_div">
       </div>
       <div class="member-cta">
