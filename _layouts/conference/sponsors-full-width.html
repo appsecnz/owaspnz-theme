@@ -21,7 +21,7 @@
       <div class="main-wrapper">
           {{ content }}
           
-          {% include conference/speakers.html datadir=page.datadir %}
+          {% include conference/sponsor-list.html datadir=page.dataDir %}
       </div>
       <hr>
       <div class="repo">
@@ -29,7 +29,7 @@
       </div>
     </main>
 
-    {% include conference/footer.html %}
+    {% include footer-no-sponsors.html %}
     
   </body>
 </html>
