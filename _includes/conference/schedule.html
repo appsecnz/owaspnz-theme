@@ -237,7 +237,16 @@
       });
         
       var talk_list = YAML.load('{{site_base_url}}assets/sitedata/{{include.datadir}}/talks.yml');
-      talk_list.sort((a, b) => (a.day > b.day) ? 1 : ((a.block > b.block) ? 1 : ((a.track > b.track) ? 1 : -1) ) );
+      talk_list.sort((a, b) => {
+    	  var rtnVal = a.day - b.day;
+    	  if( rtnVal == 0 ){
+    		  rtnVal = a.block - b.block;
+    		  if( rtnVal == 0 ) {
+    			  rtnVal = a.track - b.track;
+ 	    	  }
+    	  }
+    	  return rtnVal;
+      });
       
       var talkDay, talkBlock, talkTrack, lastDay = 0, lastBlock = 0;
       var talks_for_day = [];
