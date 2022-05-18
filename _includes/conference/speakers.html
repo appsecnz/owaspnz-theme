@@ -166,9 +166,11 @@
         
       var talk_list = YAML.load('{{site_base_url}}assets/sitedata/{{include.datadir}}/talks.yml');
       talk_list.sort((a, b) => {
-    	  var left_title = a.title;
-    	  var right_title = b.title;
-    	  return left_title.localeCompare( b.title ); 
+    	  var rtnVal = -1;
+    	  if( a.title > b.title ){
+    		  rtnVal = 1;
+    	  } 
+    	  return rtnVal;
       });
       
       $.each(talk_list, function(talkIndex) {
