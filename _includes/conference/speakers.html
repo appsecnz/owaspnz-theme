@@ -165,7 +165,11 @@
       });
         
       var talk_list = YAML.load('{{site_base_url}}assets/sitedata/{{include.datadir}}/talks.yml');
-      talk_list.sort((a, b) => (a.title > b.title) ? 1 : -1);
+      talk_list.sort((a, b) => {
+    	  var left_title = a.title;
+    	  var right_title = b.title;
+    	  return left_title.localeCompare( b.title ); 
+      });
       
       $.each(talk_list, function(talkIndex) {
     	  if( !this.plenary ) {
