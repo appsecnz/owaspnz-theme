@@ -174,7 +174,7 @@
       });
       
       $.each(talk_list, function(talkIndex) {
-    	  if( !this.plenary ) {
+    	  if( !this.plenary && !this.withdrawn ) {
         	  talkIndex = talk_info.push(this) - 1;
     	  }
       });
