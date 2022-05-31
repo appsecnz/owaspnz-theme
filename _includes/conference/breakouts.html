@@ -35,12 +35,9 @@
         	htmlText += '<p>' + currTalk["description"] + '</p>\n\n';
     	}
     	
-    	if( currTalk["stream-off"] ) {
+    	if( currTalk["nostream"] ) {
     		htmlText += '<p><strong>NOTE:</strong> Session will <em>not</em> be live-streamed or recorded.</p>\n';
-    		
     	}
-    	
-    	htmlText += '</p>\n';
     	
     	return htmlText;
     }
