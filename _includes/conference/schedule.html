@@ -10,6 +10,7 @@
     var day_info = [];
     var block_info = [];
     var talk_info = [];
+    var demo_info = [];
     
     function build_block_html( currBlock ) {
        var htmlText = '';
@@ -71,6 +72,7 @@
     }
     
     function build_talk_td( currTalk, isOddRow ) {
+    	var htmlText = '';
     	if( isOddRow ) {
     		htmlText = '<td style="background-color: #EEE; text-align: center; margin: 15px 5px;">\n';
     	}
@@ -115,14 +117,30 @@
     	return htmlText;
     }
     
-    function build_breakout_td( isOddRow ) {
+    function build_breakout_td( dayIdx, blockIdx, isOddRow ) {
     	var htmlText = '';
     	if( isOddRow ) {
-    		htmlText = '<td style="background-color: #EEE; text-align: center; margin: 15px 5px;">&nbsp;</td>\n';
+    		htmlText = '<td style="background-color: #EEE; text-align: center; margin: 15px 5px;">';
     	}
     	else {
-    		htmlText = '<td style="background-color: #B9C2DC; text-align: center; margin: 15px 5px;">&nbsp;</td>\n';
+    		htmlText = '<td style="background-color: #B9C2DC; text-align: center; margin: 15px 5px;">';
     	}
+    	
+    	const currDemo = demo_info[dayIdx][blockIdx];
+    	if( !currDemo["active"] ) {
+    		htmlText += '&nbsp;';
+    	}
+    	else {
+    		htmlText += '<strong><a href="/conference/breakouts.html#' + currDemo["anchor"] + '" target="_blank">';
+    		htmlText += currTalk["title"] + '</a></strong>\n';
+    		htmlText += '<em>' + currDemo["name"];
+    		if( currDemo["org"] ) {
+    			htmlText += '&nbsp;-&nbsp;' + currDemo["org"];
+    		}
+    		htmlText += '</em>\n';
+    	}
+    	
+    	htmlText += '</td>\n';
     	return htmlText;
     }
     
@@ -209,7 +227,7 @@
    				}
    			}
    			if( !lastPlenary ) {
-       			htmlText += build_breakout_td( oddRow );
+       			htmlText += build_breakout_td( dayIndex, blockIndex, oddRow );
     		}
    			htmlText += '</tr>\n';
 			oddRow = !oddRow;
@@ -282,6 +300,34 @@
       if( talks_for_day.length > 0 ) {
     	  talk_info.push(talks_for_day);
       }
+      
+      var demo_list = YAML.load('{{site_base_url}}assets/sitedata/{{include.datadir}}/breakouts.yml');
+      demo_list.sort((a, b) => {
+    	  var rtnVal = a.day - b.day;
+    	  if( rtnVal == 0 ){
+    		  rtnVal = a.block - b.block;
+    	  }
+    	  return rtnVal;
+      });
+      
+      lastDay = 0;
+      var demoDay, demoBlock;
+      var demos_for_day = [];
+      $.each(demo_list, function() {
+    	  demoDay = this.day;
+    	  demoBlock = this.block;
+    	  if(demoDay != lastDay) {
+    		  demo_info.push(demos_for_day);
+    		  demos_for_day = [];
+    	  }
+    	  demos_for_day.push(this);
+    	  lastDay = demoDay;
+      });
+      if( demos_for_day.length > 0 ) {
+    	  demo_info.push(demos_for_day);
+      }
+      
+
 
       var htmlString ='';
       var dayIndex = 0;
