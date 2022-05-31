@@ -132,7 +132,7 @@
     	}
     	else {
     		htmlText += '<strong><a href="/conference/breakouts.html#' + currDemo["anchor"] + '" target="_blank">';
-    		htmlText += currTalk["title"] + '</a></strong>\n';
+    		htmlText += currDemo["title"] + '</a></strong>\n';
     		htmlText += '<em>' + currDemo["name"];
     		if( currDemo["org"] ) {
     			htmlText += '&nbsp;-&nbsp;' + currDemo["org"];
@@ -311,11 +311,10 @@
       });
       
       lastDay = 0;
-      var demoDay, demoBlock;
+      var demoDay;
       var demos_for_day = [];
       $.each(demo_list, function() {
     	  demoDay = this.day;
-    	  demoBlock = this.block;
     	  if(demoDay != lastDay) {
     		  demo_info.push(demos_for_day);
     		  demos_for_day = [];
