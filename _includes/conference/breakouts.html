@@ -47,7 +47,7 @@
     }
    
    function add_viewing_links( currTalk ) {
-		var textToAdd = '<br />\nView: ';
+		var textToAdd = '<p>\nView: ';
 		if( currTalk["video"] ) {
 			textToAdd += '<a href="' + currTalk["video"] + '" target="youtube">Video</a> (YouTube';
 			if( currTalk["length"] ) {
@@ -68,7 +68,7 @@
 				textToAdd += ')';
 			}
 		}
-		textToAdd += '\n';
+		textToAdd += '</p>\n';
 		return textToAdd;
    }
 
