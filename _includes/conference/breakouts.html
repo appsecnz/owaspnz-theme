@@ -51,7 +51,7 @@
 		if( currTalk["video"] ) {
 			textToAdd += '<a href="' + currTalk["video"] + '" target="youtube">Video</a> (YouTube';
 			if( currTalk["length"] ) {
-				textToAdd += ' , ' + currTalk["length"];;
+				textToAdd += ', ' + currTalk["length"];;
 			}
 			textToAdd += ')';
 			if( currTalk["slides"] ) {
@@ -59,7 +59,7 @@
 			}
 		}
 		if( currTalk["slides"] ) {
-			textToAdd += 'a href="' + currTalk["slides"] + '" target="_blank">Slide Deck</a>';
+			textToAdd += '<a href="' + currTalk["slides"] + '" target="_blank">Slide Deck</a>';
 			if( currTalk["format"] ) {
 				textToAdd += ' (' + currTalk["format"];
 				if( currTalk["size"] ) {
