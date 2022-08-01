@@ -152,7 +152,7 @@
     
 	
 	function add_viewing_links( currTalk ) {
-		var textToAdd = '<p>\nView: ';
+		var textToAdd = '<br />\nView: ';
 		if( currTalk["video"] ) {
 			textToAdd += '<a href="' + currTalk["video"] + '" target="youtube">Video</a> (YouTube';
 			if( currTalk["length"] ) {
@@ -173,7 +173,7 @@
 				textToAdd += ')';
 			}
 		}
-		textToAdd += '</p>\n';
+		textToAdd += '\n';
 		return textToAdd;
 	}
 	

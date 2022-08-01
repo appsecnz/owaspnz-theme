@@ -29,8 +29,14 @@
     		htmlText += ' - ' + currTalk["org"];
     	}
     	htmlText += '</em>\n';
-    	htmlText += '<br />\n' + dayObj["dayofweek"] + ',&nbsp;' + blockObj["start"] + '\n</p>\n\n';
+    	htmlText += '<br />\n' + dayObj["dayofweek"] + ',&nbsp;' + blockObj["start"] + '\n'; 
     	
+		if( currTalk["video"] || currTalk["slides"] ) {
+			htmlText += add_viewing_links( currTalk );
+		}
+		
+		htmlText += '\n</p>\n\n';
+			
     	if(currTalk["description"]) {
         	htmlText += '<p>' + currTalk["description"] + '</p>\n\n';
     	}
@@ -39,15 +45,11 @@
     		htmlText += '<p><strong>NOTE:</strong> Session will <em>not</em> be live-streamed or recorded.</p>\n';
     	}
     	
-		if( currTalk["video"] || currTalk["slides"] ) {
-			htmlText += add_viewing_links( currTalk );
-		}
-    	
     	return htmlText;
     }
    
    function add_viewing_links( currTalk ) {
-		var textToAdd = '<p>\nView: ';
+		var textToAdd = '<br />\nView: ';
 		if( currTalk["video"] ) {
 			textToAdd += '<a href="' + currTalk["video"] + '" target="youtube">Video</a> (YouTube';
 			if( currTalk["length"] ) {
@@ -68,7 +70,7 @@
 				textToAdd += ')';
 			}
 		}
-		textToAdd += '</p>\n';
+		textToAdd += '\n';
 		return textToAdd;
    }
 
