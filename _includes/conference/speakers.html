@@ -62,6 +62,10 @@
         	htmlText += '<p>' + currTalk["description"] + '</p>\n\n';
     	}
     	
+    	if( currTalk["video"] || currTalk["slides"] ) {
+    		htmlText += add_viewing_links( currTalk );
+    	}
+    	
     	htmlText += '<h4 id="speaker-bio-' + talkNumber + '">Speaker ';
     	if(currTalk["name2"]) {
     		htmlText += 'Biographies'
@@ -144,6 +148,33 @@
     	return htmlText;
     }
     
+	
+	function add_viewing_links( currTalk ) {
+		var textToAdd = '<p>\nView: ';
+		if( currTalk["video"] ) {
+			textToAdd += '<a href="' + currTalk["video"] + '" target="youtube">Video</a> (YouTube';
+			if( currTalk["length"] ) {
+				textToAdd += ' , ' + currTalk["length"];;
+			}
+			textToAdd += ')';
+			if( currTalk["slides"] ) {
+				textToAdd += '; ';
+			}
+		}
+		if( currTalk["slides"] ) {
+			textToAdd += 'a href="' + currTalk["slides"] + '" target="_blank">Slide Deck</a>';
+			if( currTalk["format"] ) {
+				textToAdd += ' (' + currTalk["format"];
+				if( currTalk["size"] ) {
+					textToAdd += ', ' + currTalk["size"];
+				}
+				textToAdd += ')';
+			}
+		}
+		textToAdd += '</p>\n';
+		return textToAdd;
+	}
+	
     $(function() {  
       var track_list = YAML.load('{{site_base_url}}assets/sitedata/{{include.datadir}}/tracks.yml');
       track_list.sort((a, b) => (a.id > b.id) ? 1 : -1 );

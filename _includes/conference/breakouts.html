@@ -39,8 +39,39 @@
     		htmlText += '<p><strong>NOTE:</strong> Session will <em>not</em> be live-streamed or recorded.</p>\n';
     	}
     	
+		if( currTalk["video"] || currTalk["slides"] ) {
+			htmlText += add_viewing_links( currTalk );
+		}
+    	
     	return htmlText;
     }
+   
+   function add_viewing_links( currTalk ) {
+		var textToAdd = '<br />\nView: ';
+		if( currTalk["video"] ) {
+			textToAdd += '<a href="' + currTalk["video"] + '" target="youtube">Video</a> (YouTube';
+			if( currTalk["length"] ) {
+				textToAdd += ' , ' + currTalk["length"];;
+			}
+			textToAdd += ')';
+			if( currTalk["slides"] ) {
+				textToAdd += '; ';
+			}
+		}
+		if( currTalk["slides"] ) {
+			textToAdd += 'a href="' + currTalk["slides"] + '" target="_blank">Slide Deck</a>';
+			if( currTalk["format"] ) {
+				textToAdd += ' (' + currTalk["format"];
+				if( currTalk["size"] ) {
+					textToAdd += ', ' + currTalk["size"];
+				}
+				textToAdd += ')';
+			}
+		}
+		textToAdd += '\n';
+		return textToAdd;
+   }
+
     
     $(function() {  
       var day_list = YAML.load('{{site_base_url}}assets/sitedata/{{include.datadir}}/schedule.yml');
