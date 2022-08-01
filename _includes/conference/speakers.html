@@ -140,7 +140,34 @@
         	}
         	htmlText += '</p>\n\n';
     	}
-    	
+
+			if( currTalk["video"] || currTalk["slides"] ) {
+
+				var textToAdd = '<p>\nView: ';
+				if( currTalk["video"] ) {
+					textToAdd += '<a href="' + currTalk["video"] + '" target="_blank">Video</a> (YouTube';
+					if( currTalk["length"] ) {
+						textToAdd += ' , ' + currTalk["length"];;
+					}
+					textToAdd += ')';
+					if( currTalk["slides"] ) {
+						textToAdd += '; ';
+					}
+				}
+				if( currTalk["slides"] ) {
+					textToAdd += '<a href="' + currTalk["slides"] + '" target="_blank">Slide Deck</a>';
+					if( currTalk["format"] ) {
+						textToAdd += ' (' + currTalk["format"];
+						if( currTalk["size"] ) {
+							textToAdd += ', ' + currTalk["size"];
+						}
+						textToAdd += ')';
+					}
+				}
+				textToAdd += '</p>\n';
+				htmlText += textToAdd;
+			}
+
     	return htmlText;
     }
     
