@@ -50,7 +50,13 @@
     	if( currTalk["remote"]) {
     		htmlText += '\n<br />\n(Remote Presentation)';
     	}
-    	htmlText += '<br />\n' + trackName + '&nbsp;-&nbsp;' + dayObj["dayofweek"] + ',&nbsp;' + blockObj["start"] + '\n</p>\n\n';
+    	htmlText += '<br />\n' + trackName + '&nbsp;-&nbsp;' + dayObj["dayofweek"] + ',&nbsp;' + blockObj["start"];
+    	
+    	if( currTalk["video"] || currTalk["slides"] ) {
+    		htmlText += add_viewing_links( currTalk );
+    	}   	
+    	
+    	htmlText += '\n</p>\n\n';
     	
     	if(currTalk["abstract"]) {
     		htmlText += '<h4 id="abstract-' + talkNumber + '">Abstract</h4>\n\n';
@@ -60,10 +66,6 @@
     	if(currTalk["description"]) {
         	htmlText += '<h4 id="description-' + talkNumber + '">Description</h4>\n\n';
         	htmlText += '<p>' + currTalk["description"] + '</p>\n\n';
-    	}
-    	
-    	if( currTalk["video"] || currTalk["slides"] ) {
-    		htmlText += add_viewing_links( currTalk );
     	}
     	
     	htmlText += '<h4 id="speaker-bio-' + talkNumber + '">Speaker ';
@@ -98,7 +100,7 @@
     	htmlText += '</p>\n\n';
     	
     	if( currTalk["name2"] ) {
-        	htmlText += '<p>\n<strong>' + currTalk["name2"] + '</strong> ';
+        	htmlText += '<br />\n<strong>' + currTalk["name2"] + '</strong> ';
         	if(!currTalk["bio2"]) {
         		htmlText += '- No biography provided';
         	}
@@ -118,7 +120,7 @@
         			htmlText += ']';
         		}
         	}
-        	htmlText += '</p>\n\n';
+        	htmlText += '\n\n';
     	}
     	
     	if( currTalk["name3"] ) {
