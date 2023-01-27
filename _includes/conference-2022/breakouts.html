@@ -1,0 +1,118 @@
+<section>
+{% assign dev_file = site.static_files | where: "name", "devsite.txt" %}
+{% if dev_file.size > 0 %}
+{% assign site_base_url = '/' %}
+{% else %}
+{% assign site_base_url = 'https://appsec.org.nz/' %}
+{% endif %}
+  <script type="text/javascript">
+    var day_info = [];
+    var block_info = [];
+    var talk_info = [];
+        
+    
+   function build_breakout_html( talkIndex ) {
+    	const currTalk = talk_info[talkIndex];
+    	const talkNumber = (talkIndex + 1);
+    	
+    	const dayIndex = currTalk["day"];
+    	const dayObj   = day_info[dayIndex];
+
+    	const blockIndex = currTalk["block"];
+    	const blockObj   = block_info[dayIndex][blockIndex];
+    	
+    	var htmlText = '<hr />\n\n';
+    	
+    	htmlText += '<h3 id="' + currTalk["anchor"] + '">' + currTalk["title"] + '</h3>\n\n';
+    	htmlText += '<p><em>' + currTalk["name"];
+    	if( currTalk["org"] ) {
+    		htmlText += ' - ' + currTalk["org"];
+    	}
+    	htmlText += '</em>\n';
+    	htmlText += '<br />\n' + dayObj["dayofweek"] + ',&nbsp;' + blockObj["start"] + '\n'; 
+    	
+		if( currTalk["video"] || currTalk["slides"] ) {
+			htmlText += add_viewing_links( currTalk );
+		}
+		
+		htmlText += '\n</p>\n\n';
+			
+    	if(currTalk["description"]) {
+        	htmlText += '<p>' + currTalk["description"] + '</p>\n\n';
+    	}
+    	
+    	if( currTalk["nostream"] ) {
+    		htmlText += '<p><strong>NOTE:</strong> Session will <em>not</em> be live-streamed or recorded.</p>\n';
+    	}
+    	
+    	return htmlText;
+    }
+   
+   function add_viewing_links( currTalk ) {
+		var textToAdd = '<br />\nView: ';
+		if( currTalk["video"] ) {
+			textToAdd += '<a href="' + currTalk["video"] + '" target="youtube">Video</a> (YouTube';
+			if( currTalk["length"] ) {
+				textToAdd += ', ' + currTalk["length"];;
+			}
+			textToAdd += ')';
+			if( currTalk["slides"] ) {
+				textToAdd += '; ';
+			}
+		}
+		if( currTalk["slides"] ) {
+			textToAdd += '<a href="' + currTalk["slides"] + '" target="_blank">Slide Deck</a>';
+			if( currTalk["format"] ) {
+				textToAdd += ' (' + currTalk["format"];
+				if( currTalk["size"] ) {
+					textToAdd += ', ' + currTalk["size"];
+				}
+				textToAdd += ')';
+			}
+		}
+		textToAdd += '\n';
+		return textToAdd;
+   }
+
+    
+    $(function() {  
+      var day_list = YAML.load('{{site_base_url}}assets/sitedata/{{include.datadir}}/schedule.yml');
+      day_list.sort((a, b) => (a.day > b.day) ? 1 : -1 );
+
+      $.each(day_list, function(dayIndex) {
+  		dayIndex = day_info.push(this) - 1;
+  		var blockData = [];
+  		$.each( this.time_blocks, function(blockIndex) {
+  			blockIndex = blockData.push(this) - 1;
+  		});
+  		block_info.push(blockData);
+      });
+        
+      var talk_list = YAML.load('{{site_base_url}}assets/sitedata/{{include.datadir}}/breakouts.yml');
+      talk_list.sort((a, b) => {
+    	  var rtnVal = a.day - b.day;
+    	  if( rtnVal == 0 ){
+    		  rtnVal = a.block - b.block;
+    	  }
+    	  return rtnVal;
+      });
+      
+      $.each(talk_list, function(talkIndex) {
+    	  if( this.active ) {
+        	  talkIndex = talk_info.push(this) - 1;
+    	  }
+      });
+
+      var htmlString = '';
+      for( talkIndex in talk_info ) {
+			htmlString += build_breakout_html( talkIndex );
+      }
+                
+      $("#breakout_list_div").html(htmlString);
+          
+    });
+  </script>
+
+  <div id="breakout_list_div">
+  </div>
+</section>

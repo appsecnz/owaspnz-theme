@@ -1,0 +1,204 @@
+<section class="member">
+{% assign dev_file = site.static_files | where: "name", "devsite.txt" %}
+{% if dev_file.size > 0 %}
+{% assign site_base_url = '/' %}
+{% else %}
+{% assign site_base_url = 'https://appsec.org.nz/' %}
+{% endif %}
+  <script type="text/javascript">
+    var sponsors = [];
+    var diamond_indices = []; 
+    var platinum_indices = [];
+    var gold_indices = []; 
+    var silver_indices = [];
+    var bronze_indices = [];
+    var supporting_indices = [];
+    var other_indices = [];
+    
+    function build_sponsor_html( currSponsor ) {
+       var htmlText = '';
+       if( currSponsor ) {
+    	   htmlText += '<h4 id="' + currSponsor["anchor"] + '"><a href="' + currSponsor["url"];
+    	   htmlText += '" rel="sponsored nopener noreferrer" target="sponsor" onclick="handleOutboundLinkClicks(event);">' + currSponsor["name"] + '</a></h4>\n\n';
+    	   htmlText += '<p><img src="' + currSponsor["image"] + '" width="400" alt="Image: Logo-' + currSponsor["name"] + '" /></p>\n';
+    	   htmlText += '<p>' + currSponsor["description"] +'</p>\n';
+       }
+       return htmlText;
+    }
+
+    $(function() {  
+      var sponsor_list = YAML.load('{{site_base_url}}assets/sitedata/{{include.datadir}}/sponsors.yml');
+      sponsor_list.sort((a, b) => (a.name > b.name) ? 1 : -1 );
+
+      
+      $.each(sponsor_list, function (index) {
+    	  if( this.active ) {
+              index = sponsors.push(this) - 1;  
+              switch( this.level ) {
+              case 1:
+            	  diamond_indices.push(index);
+            	  break;
+              case 2:
+            	  platinum_indices.push(index);
+            	  break;
+              case 3:
+            	  gold_indices.push(index);
+            	  break;
+              case 4:
+            	  silver_indices.push(index);
+            	  break;
+              case 5:
+            	  bronze_indices.push(index);
+            	  break;
+              case 6:
+            	  supporting_indices.push(index);
+            	  break;
+              default:
+            	  other_indices.push(index);
+              }
+    		  
+    	  }
+        });
+
+        var current_sponsor;
+        var sponsorIndex = 0;
+        var htmlstring = "";
+        var isFirst = true;
+        
+        if( diamond_indices.length > 0 ) {
+			htmlstring += '<hr />\n\n';
+        	if( diamond_indices.length == 1 ){
+        		htmlstring += '<h3>Diamond Sponsor</h3>';
+        	}
+        	else {
+        		htmlstring += '<h3>Diamond Sponsors</h3>';
+        	}
+        	for( index in diamond_indices ) {
+        		sponsorIndex = diamond_indices[index];
+        		current_sponsor = sponsors[sponsorIndex];
+        		if( !isFirst ) {
+        			htmlstring += '<hr />\n\n';
+        		}
+        		htmlstring += build_sponsor_html( current_sponsor );
+        		isFirst = false;
+        	}
+        }
+        
+        if( platinum_indices.length > 0 ) {
+			htmlstring += '<hr />\n\n';
+        	if( platinum_indices.length == 1 ){
+        		htmlstring += '<h3>Platinum Sponsor</h3>';
+        	}
+        	else {
+        		htmlstring += '<h3>Platinum Sponsors</h3>';
+        	}
+        	isFirst = true;
+        	for( index in platinum_indices ) {
+        		sponsorIndex = platinum_indices[index];
+        		current_sponsor = sponsors[sponsorIndex];
+        		if( !isFirst ) {
+        			htmlstring += '<hr />\n\n';
+        		}
+         		htmlstring += build_sponsor_html( current_sponsor );
+         		isFirst = false;
+        	}
+        }
+        
+        if( gold_indices.length > 0 ) {
+			htmlstring += '<hr />\n\n';
+        	if( gold_indices.length == 1 ){
+        		htmlstring += '<h3>Gold Sponsor</h3>';
+        	}
+        	else {
+        		htmlstring += '<h3>Gold Sponsors</h3>';
+        	}
+        	isFirst = true;
+        	for( index in gold_indices ) {
+        		sponsorIndex = gold_indices[index];
+        		current_sponsor = sponsors[sponsorIndex];
+        		if( !isFirst ) {
+        			htmlstring += '<hr />\n\n';
+        		}
+        		htmlstring += build_sponsor_html( current_sponsor );
+        		isFirst = false;
+        	}
+        }
+        
+        if( silver_indices.length > 0 ) {
+			htmlstring += '<hr />\n\n';
+        	if( silver_indices.length == 1 ){
+        		htmlstring += '<h3>Silver Sponsor</h3>';
+        	}
+        	else {
+        		htmlstring += '<h3>Silver Sponsors</h3>';
+        	}
+        	isFirst = true;
+        	for( index in silver_indices ) {
+        		sponsorIndex = silver_indices[index];
+        		current_sponsor = sponsors[sponsorIndex];
+        		if( !isFirst ) {
+        			htmlstring += '<hr />\n\n';
+        		}
+        		htmlstring += build_sponsor_html( current_sponsor );
+        		isFirst = false;
+        	}
+        }
+        
+        if( bronze_indices.length > 0 ) {
+			htmlstring += '<hr />\n\n';
+        	if( bronze_indices.length == 1 ){
+        		htmlstring += '<h3>Bronze Sponsor</h3>';
+        	}
+        	else {
+        		htmlstring += '<h3>Bronze Sponsors</h3>';
+        	}
+        	isFirst = true;
+        	for( index in bronze_indices ) {
+        		sponsorIndex = bronze_indices[index];
+        		current_sponsor = sponsors[sponsorIndex];
+        		if( !isFirst ) {
+        			htmlstring += '<hr />\n\n';
+        		}
+        		htmlstring += build_sponsor_html( current_sponsor );
+        		isFirst = false;
+        	}
+        }
+        
+        if( other_indices.length > 0 ) {
+        	for( index in other_indices ) {
+        		sponsorIndex = other_indices[index];
+        		current_sponsor = sponsors[sponsorIndex];
+    			htmlstring += '<hr />\n\n';
+        		htmlstring += '<h3>' + current_sponsor["level"] + '</h3>\n\n';
+        		htmlstring += build_sponsor_html( current_sponsor );
+        	}
+        }
+        
+        if( supporting_indices.length > 0 ) {
+			htmlstring += '<hr />\n\n';
+        	if( supporting_indices.length == 1 ){
+        		htmlstring += '<h3>Supporting Sponsor</h3>';
+        	}
+        	else {
+        		htmlstring += '<h3>Supporting Sponsors</h3>';
+        	}
+        	isFirst = true;
+        	for( index in supporting_indices ) {
+        		sponsorIndex = supporting_indices[index];
+        		current_sponsor = sponsors[sponsorIndex];
+        		if( !isFirst ) {
+        			htmlstring += '<hr />\n\n';
+        		}
+        		htmlstring += build_sponsor_html( current_sponsor );
+        		isFirst = false;
+        	}
+        }
+        
+       	$("#sponsor_list_div").html(htmlstring);
+          
+    });
+  </script>
+
+  <div id="sponsor_list_div">
+  </div>
+</section>
