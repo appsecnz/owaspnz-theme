@@ -117,7 +117,7 @@
     	return htmlText;
     }
     
-    function build_breakout_td( dayIdx, blockIdx, isOddRow ) {
+    function build_breakout_td( dayIdx, blockIdx, isOddRow, pathSuffix ) {
     	var htmlText = '';
     	if( isOddRow ) {
     		htmlText = '<td style="background-color: #EEE; text-align: center; margin: 15px 5px;">';
@@ -131,7 +131,7 @@
     		htmlText += '&nbsp;';
     	}
     	else {
-    		htmlText += '<strong><a href="/conference/breakouts.html#' + currDemo["anchor"] + '" target="_blank">';
+    		htmlText += '<strong><a href="/conference' + pathSuffix + '/breakouts.html#' + currDemo["anchor"] + '" target="_blank">';
     		htmlText += currDemo["title"] + '</a></strong>\n';
     		htmlText += '<br />\n<em>' + currDemo["name"];
     		if( currDemo["org"] ) {
@@ -235,7 +235,7 @@
    				}
    			}
    			if( !lastPlenary ) {
-       			htmlText += build_breakout_td( dayIndex, blockIndex, oddRow );
+       			htmlText += build_breakout_td( dayIndex, blockIndex, oddRow, pathSuffix );
     		}
    			htmlText += '</tr>\n';
 			oddRow = !oddRow;
