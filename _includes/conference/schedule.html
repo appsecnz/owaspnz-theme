@@ -83,7 +83,7 @@
     		htmlText += "&nbsp;\n";
     	}
     	else {
-    		htmlText += '<strong><a href="/conference/speakers.html#' + currTalk["anchor"] + '" target="_blank">';
+    		htmlText += '<strong><a href="/conference' + pathSuffix + '/speakers.html#' + currTalk["anchor"] + '" target="_blank">';
     		htmlText += currTalk["title"] + '</a></strong>\n';
     		if( currTalk["remote"]) {
     			htmlText += '<br />\n(Remote Presentation)';
@@ -338,9 +338,10 @@
 
       var htmlString ='';
       var dayIndex = 0;
+      var pathSuffix = '{{include.pathSuffix}}';
       for( const currDay of day_info ) {
     	  htmlString += build_day_heading( currDay );
-    	  htmlString += build_day_table( currDay );
+    	  htmlString += build_day_table( currDay, pathSuffix );
       }
       
       $("#schedule_div").html(htmlString);

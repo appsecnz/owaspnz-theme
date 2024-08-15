@@ -21,7 +21,7 @@
       <div class="main-wrapper">
           {{ content }}
           
-          {% include conference/schedule.html datadir=page.dataDir %}
+          {% include conference/schedule.html datadir=page.dataDir pathSuffix=page.pathSuffix%}
       </div>
       <hr>
       <div class="repo">
