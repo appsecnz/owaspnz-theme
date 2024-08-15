@@ -71,7 +71,7 @@
     	return htmlText;
     }
     
-    function build_talk_td( currTalk, isOddRow ) {
+    function build_talk_td( currTalk, isOddRow, pathSuffix ) {
     	var htmlText = '';
     	if( isOddRow ) {
     		htmlText = '<td style="background-color: #EEE; text-align: center; margin: 15px 5px;">\n';
@@ -205,7 +205,7 @@
     	return htmlText;
     } // End of build_day_heading function
     
-    function build_day_table( dayObj ) {
+    function build_day_table( dayObj, pathSuffix ) {
         var dayIndex = dayObj["day"];
     	var current_talk;
         var blockIndex = 0;
@@ -231,7 +231,7 @@
    					lastPlenary = true;
    				}
    				else {
-   					htmlText += build_talk_td( current_talk, oddRow );
+   					htmlText += build_talk_td( current_talk, oddRow, pathSuffix );
    				}
    			}
    			if( !lastPlenary ) {
