@@ -71,7 +71,7 @@
     	return htmlText;
     }
     
-    function build_talk_td( currTalk, isOddRow ) {
+    function build_talk_td( currTalk, isOddRow, pathSuffix ) {
     	var htmlText = '';
     	if( isOddRow ) {
     		htmlText = '<td style="background-color: #EEE; text-align: center; margin: 15px 5px;">\n';
@@ -83,7 +83,7 @@
     		htmlText += "&nbsp;\n";
     	}
     	else {
-    		htmlText += '<strong><a href="/conference/speakers.html#' + currTalk["anchor"] + '" target="_blank">';
+    		htmlText += '<strong><a href="/conference' + pathSuffix + '/speakers.html#' + currTalk["anchor"] + '" target="_blank">';
     		htmlText += currTalk["title"] + '</a></strong>\n';
     		if( currTalk["remote"]) {
     			htmlText += '<br />\n(Remote Presentation)';
@@ -117,7 +117,7 @@
     	return htmlText;
     }
     
-    function build_breakout_td( dayIdx, blockIdx, isOddRow ) {
+    function build_breakout_td( dayIdx, blockIdx, isOddRow, pathSuffix ) {
     	var htmlText = '';
     	if( isOddRow ) {
     		htmlText = '<td style="background-color: #EEE; text-align: center; margin: 15px 5px;">';
@@ -131,7 +131,7 @@
     		htmlText += '&nbsp;';
     	}
     	else {
-    		htmlText += '<strong><a href="/conference/breakouts.html#' + currDemo["anchor"] + '" target="_blank">';
+    		htmlText += '<strong><a href="/conference' + pathSuffix + '/breakouts.html#' + currDemo["anchor"] + '" target="_blank">';
     		htmlText += currDemo["title"] + '</a></strong>\n';
     		htmlText += '<br />\n<em>' + currDemo["name"];
     		if( currDemo["org"] ) {
@@ -205,7 +205,7 @@
     	return htmlText;
     } // End of build_day_heading function
     
-    function build_day_table( dayObj ) {
+    function build_day_table( dayObj, pathSuffix ) {
         var dayIndex = dayObj["day"];
     	var current_talk;
         var blockIndex = 0;
@@ -231,11 +231,11 @@
    					lastPlenary = true;
    				}
    				else {
-   					htmlText += build_talk_td( current_talk, oddRow );
+   					htmlText += build_talk_td( current_talk, oddRow, pathSuffix );
    				}
    			}
    			if( !lastPlenary ) {
-       			htmlText += build_breakout_td( dayIndex, blockIndex, oddRow );
+       			htmlText += build_breakout_td( dayIndex, blockIndex, oddRow, pathSuffix );
     		}
    			htmlText += '</tr>\n';
 			oddRow = !oddRow;
@@ -338,9 +338,10 @@
 
       var htmlString ='';
       var dayIndex = 0;
+      var pathSuffix = '{{include.pathSuffix}}';
       for( const currDay of day_info ) {
     	  htmlString += build_day_heading( currDay );
-    	  htmlString += build_day_table( currDay );
+    	  htmlString += build_day_table( currDay, pathSuffix );
       }
       
       $("#schedule_div").html(htmlString);
